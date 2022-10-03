@@ -12,6 +12,7 @@
     "lint:fix": "npm run lint:fix --workspaces --if-present",
     "test": "npm run test --workspaces --if-present"
   },
+  "type":"module",
   "workspaces": [
     "./packages/*"
   ],
@@ -24,5 +25,10 @@
   "bugs": {
     "url": "https://github.com/hicsail/notification-service/issues"
   },
-  "homepage": "https://github.com/hicsail/notification-service#readme"
+  "homepage": "https://github.com/hicsail/notification-service#readme",
+  "dependencies": {
+    "aws-sdk": "^2.1227.0",
+    "dotenv": "^16.0.3",
+    "uuid": "^9.0.0"
+  }
 }
