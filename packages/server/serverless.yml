@@ -17,3 +17,9 @@ functions:
       - http:
           method: ANY
           path: '{proxy+}'
+  package:
+    exclude:
+      - ./**
+    include:
+      - dist/**
+      - node_modules/**
