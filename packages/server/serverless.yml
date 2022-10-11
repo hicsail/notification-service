@@ -1,13 +1,14 @@
 service: notification
+frameworkVersion: '3'
 plugins:
-  - serverless-offline
+  - serverless-jetpack
 provider:
   name: aws
-  runtime: nodejs14.x
+  runtime: nodejs16.x
   stage: production
 functions:
   main:
-    handler: dist/main.handler
+    handler: dist/lambda.handler
     events:
       - http:
           method: ANY
