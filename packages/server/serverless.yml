@@ -1,4 +1,4 @@
-service: notification-service
+service: notification
 
 plugins:
   - serverless-offline
@@ -6,7 +6,7 @@ plugins:
 provider:
   name: aws
   runtime: nodejs16.x
-
+  stage: production
 functions:
   main:
     handler: dist/main.handler
