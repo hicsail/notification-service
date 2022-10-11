@@ -10,31 +10,27 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/server
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: 16
       - name: Install dependencies
-        run: npm ci
+        run: npm install
       - name: Check Formatting
         run: npm run prettier
-        working-directory: packages/server
       - name: Check Linting
         run: npm run lint
-        working-directory: packages/server
       - name: Build
         run: npm run build
-        working-directory: packages/server
       - name: Test
         run: npm run test
-        working-directory: packages/server
       - name: Install Serverless
-        run: |
-          npm install -g serverless
-          cp -R node_moules packages/server
+        run: npm install -g serverless
       - name: Deploy
-        working-directory: packages/server
         run: |
           npm prune --production
           serverless deploy --stage production
