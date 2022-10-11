@@ -32,9 +32,9 @@ jobs:
         with:
           name: server
           path: |
-            dist
-            package.json
-            package-lock.json
+            packages/server/dist
+            packages/server/package.json
+            packages/server/package-lock.json
 
   deploy:
     needs: build
