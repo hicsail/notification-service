@@ -1,11 +1,9 @@
 service: notification
-
 plugins:
   - serverless-offline
-
 provider:
   name: aws
-  runtime: nodejs16.x
+  runtime: nodejs14.x
   stage: production
 functions:
   main:
@@ -17,9 +15,3 @@ functions:
       - http:
           method: ANY
           path: '{proxy+}'
-  package:
-    exclude:
-      - ./**
-    include:
-      - dist/**
-      - node_modules/**
