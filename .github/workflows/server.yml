@@ -11,8 +11,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     defaults:
-      run:
-        working-directory: packages/server
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -22,15 +20,24 @@ jobs:
         run: npm ci
       - name: Check Formatting
         run: npm run prettier
+        working-directory: packages/server
       - name: Check Linting
         run: npm run lint
+        working-directory: packages/server
       - name: Build
         run: npm run build
+        working-directory: packages/server
       - name: Test
         run: npm run test
-      - name: Deploy
+        working-directory: packages/server
+      - name: Install Serverless
         run: |
           npm install -g serverless
+          cp -R node_moules packages/server
+      - name: Deploy
+        working-directory: packages/server
+        run: |
+          npm prune --production
           serverless deploy --stage production
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
