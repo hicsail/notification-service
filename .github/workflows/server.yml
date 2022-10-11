@@ -41,4 +41,4 @@ jobs:
           memory_size: 128
           runtime: nodejs16.x
           description: Notification Service
-          dry_run: github.ref != 'refs/heads/main'
+          dry_run: ${{ github.ref != 'refs/heads/main' }}
