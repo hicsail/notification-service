@@ -32,21 +32,17 @@ jobs:
         with:
           name: server
           path: |
-            packages/server/dist
-            packages/server/package.json
-            packages/server/package-lock.json
+            dist
+            package.json
+            package-lock.json
 
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: packages/server
     steps:
       - uses: actions/download-artifact@v3
         with:
           name: server
-          path: packages/server/dist
       - uses: actions/setup-node@v3
         with:
           node-version: 16
