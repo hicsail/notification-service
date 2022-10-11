@@ -28,29 +28,8 @@ jobs:
         run: npm run build
       - name: Test
         run: npm run test
-      - uses: actions/upload-artifact@v3
-        with:
-          name: server
-          path: |
-            packages/server/dist
-            packages/server/package.json
-            packages/server/package-lock.json
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/download-artifact@v3
-        with:
-          name: server
-      - run: ls -R
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
-      - name: Install dependencies
-        run: npm ci
       - name: Zip
-        run: zip -j deploy.zip .
+        run: zip -r deploy.zip dist node_modules package.json
       - name: Deploy
         uses: appleboy/lambda-action@master
         with:
