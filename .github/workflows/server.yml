@@ -31,7 +31,10 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: server
-          path: packages/server/dist
+          path: |
+            packages/server/dist
+            packages/server/package.json
+            packages/server/package-lock.json
 
   deploy:
     needs: build
@@ -40,7 +43,6 @@ jobs:
       run:
         working-directory: packages/server
     steps:
-      - uses: actions/checkout@v3
       - uses: actions/download-artifact@v3
         with:
           name: server
@@ -50,15 +52,17 @@ jobs:
           node-version: 16
       - name: Install dependencies
         run: npm ci
+      - name: Zip
+        run: zip -j deploy.zip .
       - name: Deploy
         uses: appleboy/lambda-action@master
         with:
           aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws_region: ${{ secrets.AWS_REGION }}
+          zip_file: deploy.zip
           function_name: notification-service
           handler_name: main
-          zip: dist
           memory_size: 128
           runtime: nodejs16.x
           description: Notification Service
