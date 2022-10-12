@@ -19,7 +19,6 @@ export class EmailService {
   @SqsMessageHandler(/** name: */ 'notification queue', /** batch: */ false)
   public async handleMessage(message: AWS.SQS.Message) {
     const msg: EmailMessage = JSON.parse(message.Body) as EmailMessage;
-    console.log(msg)
     // Give SES the details and let it construct the message for you.
     this.client.sendEmail(
         msg,
