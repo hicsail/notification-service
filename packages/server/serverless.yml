@@ -1,0 +1,19 @@
+service: notification
+frameworkVersion: '3'
+plugins:
+  - serverless-jetpack
+provider:
+  name: aws
+  runtime: nodejs16.x
+  stage: production
+functions:
+  main:
+    handler: dist/lambda.handler
+    events:
+      - http:
+          method: ANY
+          path: /
+      - http:
+          method: ANY
+          path: '{proxy+}'
+      - sqs: arn:aws:sqs:us-east-1:135854645631:notification-queue

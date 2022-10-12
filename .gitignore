@@ -1,7 +1,7 @@
 # compiled output
 /dist
+/packages/server/node_modules
 /node_modules
-
 # Logs
 logs
 *.log
@@ -27,12 +27,5 @@ lerna-debug.log*
 .settings/
 *.sublime-workspace
 
-# IDE - VSCode
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-
-/src/.env
-/src/queue_controllers/
+/packages/server/.env
+/packages/server/dist
