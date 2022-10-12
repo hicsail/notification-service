@@ -1,4 +1,5 @@
-{ "name": "@hicsail/notification",	
+{ 
+"name": "@hicsail/notification",	
 "version": "0.0.1",	
 "description": "The notifications microservice provides a common abstraction layer on top of the various notification types and actual sending.",	
 "scripts": {	
