@@ -16,3 +16,4 @@ functions:
       - http:
           method: ANY
           path: '{proxy+}'
+      - sqs: arn:aws:sqs:us-east-1:135854645631:notification-queue
