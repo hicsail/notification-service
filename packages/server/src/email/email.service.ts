@@ -10,13 +10,15 @@ export class EmailService {
   public async handleMessage(message: AWS.SQS.Message) {
     const msg: EmailMessage = JSON.parse(message.Body) as EmailMessage;
     // Give SES the details and let it construct the message for you.
-    this.client.sendEmail(msg, function (err, data, res) {});
+    this.client.sendEmail(msg, function (err, data, res) {
+      if (err) console.log(err);
+    });
   }
 
-  // @SqsConsumerEventHandler(/** name: */ 'notification queue', /** eventName: */ 'processing_error')
-  // public onProcessingError(error: Error, message: AWS.SQS.Message) {
-  //   // report errors here
-  // }
+  @SqsConsumerEventHandler(/** name: */ 'notification queue', /** eventName: */ 'processing_error')
+  public onProcessingError(error: Error, message: AWS.SQS.Message) {
+    // report errors here
+  }
 }
 
 interface EmailMessage {
