@@ -28,6 +28,7 @@ lerna-debug.log*
 *.sublime-workspace
 
 /packages/server/.env
+/packages/client/.env
 /packages/server/dist
 
 /packages/client/dist

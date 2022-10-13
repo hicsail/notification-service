@@ -21,11 +21,11 @@ export class EmailService {
   }
 }
 
-interface EmailMessage {
+interface EmailMessage< T= any> {
   from: string;
   to: string;
   subject: string;
-  message: string;
+  message: T;
   replyTo?: string;
   cc?: string[];
   bcc?: string[];
