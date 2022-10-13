@@ -11,7 +11,6 @@ export class EmailService {
     const msg: EmailMessage = JSON.parse(message.Body) as EmailMessage;
     // Give SES the details and let it construct the message for you.
     this.client.sendEmail(msg, function (err, data, res) {
-      // console.log(res);
     });
   }
 
