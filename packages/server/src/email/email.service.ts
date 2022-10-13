@@ -5,22 +5,15 @@ import * as ses from 'node-ses';
 @Injectable()
 export class EmailService {
   private readonly client = ses.createClient({} as any);
-
+  
   @SqsMessageHandler(/** name: */ 'notification queue', /** batch: */ false)
   public async handleMessage(message: AWS.SQS.Message) {
-    const msg = JSON.parse(message.Body);
-
+    const msg: EmailMessage = JSON.parse(message.Body) as EmailMessage;
     // Give SES the details and let it construct the message for you.
     this.client.sendEmail(
-      {
-        from: 'test@email.sail.codes',
-        subject: 'Greetings',
-        message: 'Hello',
-        altText: 'plain text',
-        to: 'hishii@bu.edu',
-      },
+        msg,
       function (err, data, res) {
-        console.log(res);
+        // console.log(res);
       },
     );
   }
@@ -29,4 +22,14 @@ export class EmailService {
   public onProcessingError(error: Error, message: AWS.SQS.Message) {
     // report errors here
   }
+}
+
+interface EmailMessage {
+  from: string;
+  to: string;
+  subject: string;
+  message: string;
+  replyTo?: string;
+  cc?: string[];
+  bcc?: string[];
 }
