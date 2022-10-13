@@ -29,3 +29,5 @@ lerna-debug.log*
 
 /packages/server/.env
 /packages/server/dist
+
+/packages/client/dist
