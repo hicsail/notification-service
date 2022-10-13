@@ -13,10 +13,10 @@ export class EmailService {
     this.client.sendEmail(msg, function (err, data, res) {});
   }
 
-  @SqsConsumerEventHandler(/** name: */ 'notification queue', /** eventName: */ 'processing_error')
-  public onProcessingError(error: Error, message: AWS.SQS.Message) {
-    // report errors here
-  }
+  // @SqsConsumerEventHandler(/** name: */ 'notification queue', /** eventName: */ 'processing_error')
+  // public onProcessingError(error: Error, message: AWS.SQS.Message) {
+  //   // report errors here
+  // }
 }
 
 interface EmailMessage {
