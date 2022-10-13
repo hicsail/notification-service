@@ -5,17 +5,14 @@ import * as ses from 'node-ses';
 @Injectable()
 export class EmailService {
   private readonly client = ses.createClient({} as any);
-  
+
   @SqsMessageHandler(/** name: */ 'notification queue', /** batch: */ false)
   public async handleMessage(message: AWS.SQS.Message) {
     const msg: EmailMessage = JSON.parse(message.Body) as EmailMessage;
     // Give SES the details and let it construct the message for you.
-    this.client.sendEmail(
-        msg,
-      function (err, data, res) {
-        // console.log(res);
-      },
-    );
+    this.client.sendEmail(msg, function (err, data, res) {
+      // console.log(res);
+    });
   }
 
   @SqsConsumerEventHandler(/** name: */ 'notification queue', /** eventName: */ 'processing_error')
