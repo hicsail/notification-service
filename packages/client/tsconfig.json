@@ -3,9 +3,10 @@
     "module": "commonjs",
     "target": "es2015",
     "declaration": true,
-    "outDir": "./dist"
+    "outDir": "./dist",
+    "experimentalDecorators": true,
   },
   "include": [
     "src/**/*"
-  ]
+, "../server/src/email/validator/CustomEmailValidator_server.ts"  ]
 }

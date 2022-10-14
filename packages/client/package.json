@@ -12,7 +12,9 @@
     "lint:fix": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix"
   },
   "dependencies": {
-    "dotenv": "^16.0.3"
+    "class-validator": "^0.13.2",
+    "dotenv": "^16.0.3",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@types/node": "^16.11.65",
