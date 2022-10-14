@@ -16,8 +16,3 @@ export class NotificationClient {
     await this.producer.send([{ id, delaySeconds, body: JSON.stringify(formattedEmail) }]);
   }
 }
-
-const msg = { from: 'test@email.sail.codes', to: 'hishii@bu.edu', subject: 123, message: 'Hello World', altText: 'plain text', cc: ['hishii@bu.edu', 'hishii@bu.edu'] };
-const delaySeconds = 3;
-const client = new NotificationClient();
-client.sendmessage(msg, delaySeconds);
