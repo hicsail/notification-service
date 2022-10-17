@@ -11,8 +11,8 @@ export class NotificationClient {
   });
 
   public async sendMessage(msg: object, delaySeconds = 5) {
-      const formattedEmail = await validate(msg);
-      const id = uuidv4();
-      return this.producer.send([{ id, delaySeconds, body: JSON.stringify(formattedEmail) }]);
+    const formattedEmail = await validate(msg);
+    const id = uuidv4();
+    return this.producer.send([{ id, delaySeconds, body: JSON.stringify(formattedEmail) }]);
   }
 }

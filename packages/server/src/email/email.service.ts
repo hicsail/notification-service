@@ -9,7 +9,7 @@ export class EmailService {
   private readonly client = ses.createClient({} as any);
 
   public async IsCompliantFormat(msg: Email) {
-    const res = await validate(msg, { skipMissingProperties: true })
+    const res = await validate(msg, { skipMissingProperties: true });
     return res.length === 0;
   }
 

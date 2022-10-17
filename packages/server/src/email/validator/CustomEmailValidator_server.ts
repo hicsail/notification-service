@@ -17,10 +17,10 @@ export class Email<T = any> {
   replyTo?: string;
 
   @IsArray()
-  @IsEmail({ each:true, message: 'You need a proper email address' })
+  @IsEmail({ each: true, message: 'You need a proper email address' })
   cc?: string[];
 
   @IsArray()
-  @IsEmail({ each:true,  message: 'You need a proper email address' })
+  @IsEmail({ each: true, message: 'You need a proper email address' })
   bcc?: string[];
 }
