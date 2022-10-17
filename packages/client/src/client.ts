@@ -10,7 +10,7 @@ export class NotificationClient {
     region: process.env.AWS_REGION
   });
 
-  public async sendmessage(msg: object, delaySeconds = 5) {
+  public async sendMessage(msg: object, delaySeconds = 5) {
       const formattedEmail = await validate(msg);
       const id = uuidv4();
       return this.producer.send([{ id, delaySeconds, body: JSON.stringify(formattedEmail) }]);
