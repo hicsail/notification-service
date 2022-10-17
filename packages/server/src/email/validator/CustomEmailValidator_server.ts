@@ -1,7 +1,7 @@
-import { Validate, Length, IsEmail, IsArray, ValidateNested } from 'class-validator';
+import { Validate, Length, IsEmail, IsArray } from 'class-validator';
 import { CustomEmailArray } from './CustomEmailArray';
 
-export class mailbody<T = any> {
+export class Email<T = any> {
   @IsEmail({ message: 'You need a proper email address' })
   from: string;
 
