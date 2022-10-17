@@ -7,7 +7,7 @@ import { Validate, Length, IsEmail, IsArray, ValidateNested } from 'class-valida
 import { CustomEmailArray } from './validator/CustomEmailArray';
 
 @Injectable()
-export class EmailService  {
+export class EmailService {
   private readonly client = ses.createClient({} as any);
   @IsEmail({ message: 'You need a proper email address' })
   from: string;
@@ -31,7 +31,7 @@ export class EmailService  {
   @Validate(CustomEmailArray, { message: 'Check your bcc is all address' })
   @IsArray()
   bcc?: string[];
-  
+
   @SqsMessageHandler(/** name: */ 'notification queue', /** batch: */ false)
   public async handleMessage(message: AWS.SQS.Message) {
     const msg = JSON.parse(message.Body);
