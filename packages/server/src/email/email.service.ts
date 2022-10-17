@@ -27,8 +27,8 @@ export class EmailService {
     const msg = JSON.parse(message.Body);
     const check = this.IsCompliantFormat(msg);
     if (check) {
-      console.log('Pass');
       this.sendEmail(msg);
+      console.log('The email was successfully sent');
     }
   }
 

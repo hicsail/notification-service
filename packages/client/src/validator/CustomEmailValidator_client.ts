@@ -11,7 +11,7 @@ export async function validate(msg: object) {
     bcc: array(string().email())
   });
   const formattedEmail = emailSchema.cast(msg);
-  const res = await emailSchema.validate(formattedEmail); // Returns warning if an error is present
-  console.log('You have just sent: ', res);
+  const res = await emailSchema.validate(formattedEmail); // validate will throw an error if the message is not valid
+  console.log('You have just sent: ', res); // This will be printed only if the message is valid
   return formattedEmail;
 }
