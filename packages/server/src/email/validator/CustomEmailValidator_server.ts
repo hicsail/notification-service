@@ -17,11 +17,11 @@ export class Email<T = any> {
   @IsEmail({ message: 'You need a proper email address' })
   replyTo?: string;
 
-  @Validate(CustomEmailArray, { message: 'Check your cc is all address' })
   @IsArray()
+  @IsEmail({ each:true, message: 'You need a proper email address' })
   cc?: string[];
 
-  @Validate(CustomEmailArray, { message: 'Check your bcc is all address' })
   @IsArray()
+  @IsEmail({ each:true,  message: 'You need a proper email address' })
   bcc?: string[];
 }
