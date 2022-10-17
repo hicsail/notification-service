@@ -24,8 +24,5 @@
   "bugs": {
     "url": "https://github.com/hicsail/notification-service/issues"
   },
-  "homepage": "https://github.com/hicsail/notification-service#readme",
-  "dependencies": {
-    "class-validator": "^0.13.2"
-  }
+  "homepage": "https://github.com/hicsail/notification-service#readme"
 }
