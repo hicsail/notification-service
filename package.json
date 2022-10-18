@@ -1,5 +1,5 @@
 {
-  "name": "@sail/notification",
+  "name": "@bu-sail/notification",
   "version": "0.0.1",
   "private": true,
   "description": "The notifications microservice provides a common abstraction layer on top of the various notification types and actual sending.",
