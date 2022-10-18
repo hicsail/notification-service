@@ -38,3 +38,4 @@ jobs:
         with:
           token: ${{ secrets.NPM_TOKEN }}
           package: packages/client/package.json
+          access: public
