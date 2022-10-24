@@ -1,3 +1,4 @@
+import React from 'react';
 import { Injectable } from '@nestjs/common';
 import ReactDOMServer from 'react-dom/server';
 import CssBaseline from '@mui/material/CssBaseline';
