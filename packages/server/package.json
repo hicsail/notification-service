@@ -25,6 +25,12 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
+    "@emotion/css": "^11.10.0",
+    "@emotion/react": "^11.10.4",
+    "@emotion/server": "^11.10.0",
+    "@emotion/styled": "^11.10.4",
+    "@mui/material": "^5.10.10",
+    "@nestjs/axios": "^0.1.0",
     "@nestjs/common": "^9.1.4",
     "@nestjs/config": "^2.2.0",
     "@nestjs/core": "^9.0.0",
@@ -33,6 +39,8 @@
     "@vendia/serverless-express": "^4.10.1",
     "aws-lambda": "^1.0.7",
     "class-validator": "^0.13.2",
+    "ioredis": "^5.2.3",
+    "node-fetch": "^3.2.10",
     "node-ses": "^3.0.3",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
