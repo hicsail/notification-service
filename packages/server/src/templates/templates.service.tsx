@@ -1,6 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { HttpService } from '@nestjs/axios'
-import * as React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
@@ -10,13 +8,30 @@ import App from './App';
 import theme from './theme';
 import createEmotionCache from './createEmotionCache';
 
-
 @Injectable()
 export class TemplatesService {
-  url = 'http://localhost:3000'
-  constructor(private readonly httpService: HttpService) { }
 
-  renderFullPage(html, css) {
+  handleRender() {
+    const cache = createEmotionCache();
+    const { extractCriticalToChunks, constructStyleTagsFromChunks } = createEmotionServer(cache);
+
+    // Render the component to a string.
+    const html = ReactDOMServer.renderToString(
+      <CacheProvider value={cache} >
+        <ThemeProvider theme={theme} >
+          < CssBaseline />
+          <App />
+        </ThemeProvider>
+      </CacheProvider>,
+    );
+
+    // Grab the CSS from emotion
+    const emotionChunks = extractCriticalToChunks(html);
+    const emotionCss = constructStyleTagsFromChunks(emotionChunks);
+    return this.renderFullPage(html, emotionCss);
+  }
+
+  renderFullPage(html: any, css: any) {
     return `
       <!DOCTYPE html>
       <html>
@@ -31,28 +46,6 @@ export class TemplatesService {
         </body>
       </html>
     `;
-  }
-
-  handleRender() {
-    const cache = createEmotionCache();
-    const { extractCriticalToChunks, constructStyleTagsFromChunks } =
-      createEmotionServer(cache);
-
-    // Render the component to a string.
-    const html = ReactDOMServer.renderToString(
-      <CacheProvider value={cache} >
-        <ThemeProvider theme={theme} >
-          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-          < CssBaseline />
-          <App />
-        </ThemeProvider>
-      </CacheProvider>,
-    );
-
-    // Grab the CSS from emotion
-    const emotionChunks = extractCriticalToChunks(html);
-    const emotionCss = constructStyleTagsFromChunks(emotionChunks);
-    return this.renderFullPage(html, emotionCss);
   }
 
   getTemplate(): any {
