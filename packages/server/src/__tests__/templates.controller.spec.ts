@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { TemplatesController } from '../src/templates/templates.controller';
+import { TemplatesController } from '../templates/templates.controller';
 
 describe('TemplatesController', () => {
   let controller: TemplatesController;
