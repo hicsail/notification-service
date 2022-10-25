@@ -9,6 +9,6 @@ import { TemplatesModule } from './templates/templates.module';
 @Module({
   imports: [EmailModule, HealthModule, TemplatesModule, ConfigModule.forRoot({ isGlobal: true })],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService]
 })
 export class AppModule {}
