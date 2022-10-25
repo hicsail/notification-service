@@ -4,10 +4,11 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { EmailModule } from './email/email.module';
 import { ConfigModule } from '@nestjs/config';
+import { TemplatesModule } from './templates/templates.module';
 // SESModule,
 @Module({
-  imports: [EmailModule, HealthModule, ConfigModule.forRoot({ isGlobal: true })],
+  imports: [EmailModule, HealthModule, TemplatesModule, ConfigModule.forRoot({ isGlobal: true })],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService]
 })
 export class AppModule {}

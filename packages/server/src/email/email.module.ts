@@ -9,11 +9,11 @@ import { ConfigService } from '@nestjs/config';
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => {
         return {
-          consumers: [{ name: 'notification queue', queueUrl: configService.get('SQS_QUEUE_URL') }],
+          consumers: [{ name: 'notification queue', queueUrl: configService.get('SQS_QUEUE_URL') }]
         };
-      },
-    }),
+      }
+    })
   ],
-  providers: [EmailService],
+  providers: [EmailService]
 })
 export class EmailModule {}
