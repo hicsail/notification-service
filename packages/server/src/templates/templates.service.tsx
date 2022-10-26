@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { passwordReset, sample } from './email_templates'
+import { passwordReset, sample, error } from './email_templates'
 
 @Injectable()
 export class TemplatesService {
@@ -10,10 +10,15 @@ export class TemplatesService {
   /// 3) Import the newly created function above and add in the following object/dictionary
   templateStyles = {
     "sample": sample(),
-    "passwordReset": passwordReset()
+    "passwordReset": passwordReset(),
+    "error": error(),
   }
 
   getTemplate(template_name: string): any {
-    return this.templateStyles[template_name];
+    if (!(template_name in this.templateStyles)) {
+      return this.templateStyles["error"];
+    } else {
+      return this.templateStyles[template_name];
+    }
   }
 }

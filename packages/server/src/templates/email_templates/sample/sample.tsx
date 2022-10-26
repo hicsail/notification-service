@@ -27,7 +27,6 @@ export function sample() {
     const emotionCss = constructStyleTagsFromChunks(emotionChunks);
 
     return (`
-            <!DOCTYPE html>
             <html>
                 <head>
                     <title>My page</title>
