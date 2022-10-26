@@ -1,5 +1,5 @@
 export function passwordReset() {
-  return `<head>
+    return `<head>
             <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
             <title>Reset Password Email Template</title>
             <meta name="description" content="Reset Password Email Template.">
