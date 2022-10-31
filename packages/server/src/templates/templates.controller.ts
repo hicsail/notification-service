@@ -7,6 +7,7 @@ export class TemplatesController {
 
   @Get('/')
   getTemplate(): any {
-    return this.templateService.getTemplate();
+    const templateName = 'passwordReset';
+    return this.templateService.getTemplate(templateName);
   }
 }
