@@ -13,7 +13,7 @@ export class TemplatesService {
     "passwordReset": passwordReset(),
   }
 
-  getTemplate(template_name: string): any {
-    return this.templateStyles[template_name];
+  getTemplate(templateName: string): any {
+    return this.templateStyles[templateName];
   }
 }
