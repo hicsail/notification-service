@@ -5,8 +5,8 @@ import { ThemeProvider } from '@mui/material/styles';
 import { CacheProvider } from '@emotion/react';
 import createEmotionServer from '@emotion/server/create-instance';
 import App from './App';
-import theme from './theme';
-import createEmotionCache from './createEmotionCache';
+import theme from '../common/theme';
+import createEmotionCache from '../common/createEmotionCache';
 
 export function sample() {
     const cache = createEmotionCache();
