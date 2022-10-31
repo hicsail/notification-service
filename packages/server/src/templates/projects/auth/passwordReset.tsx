@@ -1,11 +1,7 @@
-import ReactDOMServer from 'react-dom/server';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { createTheme } from '@mui/material/styles';
-
-const theme = createTheme();
 
 export function passwordReset() {
 
