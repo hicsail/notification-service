@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Logger, Injectable } from '@nestjs/common';
 import { SqsMessageHandler, SqsConsumerEventHandler } from '@ssut/nestjs-sqs';
 import * as ses from 'node-ses';
 import { validate } from 'class-validator';
@@ -7,6 +7,7 @@ import { Email } from './validator/CustomEmailValidator_server';
 @Injectable()
 export class EmailService {
   private readonly client = ses.createClient({} as any);
+  private readonly logger = new Logger(EmailService.name);
 
   public async IsCompliantFormat(msg: Email) {
     const res = await validate(msg, { skipMissingProperties: true });
@@ -17,7 +18,7 @@ export class EmailService {
     // const msg: EmailMessage = JSON.parse(message.Body) as EmailMessage;
     // Give SES the details and let it construct the message for you.
     this.client.sendEmail(msg, function (err, data, res) {
-      if (err) console.log(err);
+      if (err) this.logger.log(err)
     });
   }
 
