@@ -12,10 +12,11 @@ export class TemplatesService {
   private readonly logger = new Logger(TemplatesService.name);
 
   async getTemplate(templateName: string, props: any): Promise<any> {
-    const TemplateFile = await import('./projects/' + templateName);
+    const TemplateFile = await import('./projects/' + templateName).catch(err => {
+      this.logger.log(err);
+    })
     const SelectedTemplate = TemplateFile.default
 
-    this.logger.log('Selected Template: ', SelectedTemplate("/"));
     const cache = createEmotionCache();
     const { extractCriticalToChunks, constructStyleTagsFromChunks } = createEmotionServer(cache);
 
