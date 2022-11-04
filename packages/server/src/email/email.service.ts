@@ -2,6 +2,7 @@ import { Logger, Injectable } from '@nestjs/common';
 import { SqsMessageHandler, SqsConsumerEventHandler } from '@ssut/nestjs-sqs';
 import * as ses from 'node-ses';
 import { validate } from 'class-validator';
+import { plainToClass } from 'class-transformer';
 import { Email } from './validator/CustomEmailValidator_server';
 
 @Injectable()
@@ -11,24 +12,34 @@ export class EmailService {
 
   public async IsCompliantFormat(msg: Email) {
     const res = await validate(msg, { skipMissingProperties: true });
-    return res.length === 0;
+    return res;
   }
 
-  public sendEmail(msg: Email) {
-    // const msg: EmailMessage = JSON.parse(message.Body) as EmailMessage;
+  public sendEmail(msg: Email): Promise<ses.SendEmailData> {
     // Give SES the details and let it construct the message for you.
-    this.client.sendEmail(msg, function (err, data, res) {
-      if (err) this.logger.log(err);
-    });
+    return new Promise((resolve, reject) => {
+      this.client.sendEmail(msg, (err, data) => {
+        if (err) {
+          this.logger.error("AWS Error", err)
+          return reject(err)
+        }
+        return resolve(data)
+      });
+    })
   }
 
   @SqsMessageHandler(/** name: */ 'notification queue', /** batch: */ false)
   public async handleMessage(message: AWS.SQS.Message) {
+    this.logger.log("Message to be sent: ", message)
     const msg = JSON.parse(message.Body);
-    const check = this.IsCompliantFormat(msg);
-    if (check) {
-      this.sendEmail(msg);
-      console.log('The email was successfully sent');
+    const email = plainToClass(Email, msg);
+
+    const check = await this.IsCompliantFormat(email);
+    if (check.length === 0) {
+      await this.sendEmail(email);
+      this.logger.log('The email was successfully sent')
+    } else {
+      this.logger.error("Format Validation Error", check)
     }
   }
 
