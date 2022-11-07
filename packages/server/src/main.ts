@@ -4,7 +4,7 @@ import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  const config = new DocumentBuilder().setTitle('Email Template').setDescription('The Email Template API description').setVersion('1.0').addTag('preview').build();
+  const config = new DocumentBuilder().setTitle('Notification Service').setDescription('The notifications microservice provides a common abstraction layer on top of the various notification types and actual sending.').setVersion('1.0').build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('docs', app, document);
   await app.listen(3000);
