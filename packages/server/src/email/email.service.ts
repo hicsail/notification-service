@@ -20,26 +20,26 @@ export class EmailService {
     return new Promise((resolve, reject) => {
       this.client.sendEmail(msg, (err, data) => {
         if (err) {
-          this.logger.error("AWS Error", err)
-          return reject(err)
+          this.logger.error('AWS Error', err);
+          return reject(err);
         }
-        return resolve(data)
+        return resolve(data);
       });
-    })
+    });
   }
 
   @SqsMessageHandler(/** name: */ 'notification queue', /** batch: */ false)
   public async handleMessage(message: AWS.SQS.Message) {
-    this.logger.log("Message to be sent: ", message)
+    this.logger.log('Message to be sent: ', message);
     const msg = JSON.parse(message.Body);
     const email = plainToClass(Email, msg);
 
     const check = await this.IsCompliantFormat(email);
     if (check.length === 0) {
       await this.sendEmail(email);
-      this.logger.log('The email was successfully sent')
+      this.logger.log('The email was successfully sent');
     } else {
-      this.logger.error("Format Validation Error", check)
+      this.logger.error('Format Validation Error', check);
     }
   }
 
