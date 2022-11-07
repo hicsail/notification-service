@@ -11,8 +11,7 @@ export class EmailService {
   private readonly logger = new Logger(EmailService.name);
 
   public async IsCompliantFormat(msg: Email) {
-   return validate(msg, { skipMissingProperties: true });
-    return res;
+    return validate(msg, { skipMissingProperties: true });
   }
 
   public sendEmail(msg: Email): Promise<ses.SendEmailData> {
