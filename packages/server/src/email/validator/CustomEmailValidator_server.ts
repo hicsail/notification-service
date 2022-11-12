@@ -1,4 +1,4 @@
-import { Length, IsEmail, IsArray } from 'class-validator';
+import { Length, IsEmail, IsArray, IsNotEmpty } from 'class-validator';
 
 export class Email<T = any> {
   @IsEmail({ message: 'You need a proper email address' })
@@ -17,10 +17,10 @@ export class Email<T = any> {
   replyTo?: string;
 
   @IsArray()
-  @IsEmail({ each: true, message: 'You need a proper email address' })
+  @IsEmail({ each: true, message: 'CC needs a proper email address' })
   cc?: string[];
 
   @IsArray()
-  @IsEmail({ each: true, message: 'You need a proper email address' })
+  @IsEmail({ each: true, message: 'BCC needs a proper email address' })
   bcc?: string[];
 }

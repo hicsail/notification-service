@@ -3,7 +3,11 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 
-export function passwordReset() {
+export interface ForgotPasswordProps {
+    link: string;
+}
+
+export default function (props: ForgotPasswordProps) {
 
     return (
         <Container component="main" maxWidth="xs">
@@ -27,7 +31,7 @@ export function passwordReset() {
                         fullWidth
                         variant="contained"
                         sx={{ mt: 3, mb: 2 }}
-                        href='/pwreset'
+                        href={props.link}
                     >
                         Reset Password
                     </Button>
