@@ -48,14 +48,5 @@ Beware that cc and bcc takes array, rather than a single string.
 ## Development Guide
 ## Frameworks
 ## Tests
-```
-# unit tests
-$ npm run test
 
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
 ## Additional Scripts
