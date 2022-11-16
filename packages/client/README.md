@@ -8,10 +8,8 @@ In order to run/develop this Microservice, your project needs the following pack
 
 ```
     "node": "^14.15.0 || >=16.10.0",
-    "@ssut/nestjs-sqs": "^1.3.0",
     "aws-sdk": "^2.1227.0",
     "dotenv": "^16.0.3",
-    "sqs-producer": "^2.1.0",
     "uuid": "^9.0.0"
 ```
 
