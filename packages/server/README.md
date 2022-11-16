@@ -1,3 +1,46 @@
+## Prerequisites 
+In order to run/develop this Microservice, your project needs the following packages installed:
+
+```
+    "node": "^14.15.0 || >=16.10.0",
+    "@ssut/nestjs-sqs": "^1.3.0",
+    "aws-sdk": "^2.1227.0",
+    "dotenv": "^16.0.3",
+    "sqs-producer": "^2.1.0",
+    "uuid": "^9.0.0"
+```
+
+## Development Guide
+
+Please create a new template inside the src/templates/projects directory https://github.com/hicsail/notification-service/tree/readMe/packages/server/src/templates/projects
+
+You may reference this example as a starting point https://github.com/hicsail/notification-service/blob/readMe/packages/server/src/templates/projects/passwordReset.tsx
+
+If you are wondering how this whole module works, the templates.service.tsx will fetch and wrap your new template.
+https://github.com/hicsail/notification-service/blob/9d5a1b3fedae33c6b030ae70390bd98cd022c955/packages/server/src/templates/templates.service.tsx#L15
+
+## Frameworks
+
+## Tests
+
+```
+# unit tests
+$ npm run test
+
+# e2e tests
+$ npm run test:e2e
+
+# test coverage
+$ npm run test:cov
+```
+
+## Additional Scripts
+
+
+
+
+
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
