@@ -1,6 +1,6 @@
 # How to send emails
 
-This client module lets you send a 
+This client module lets you send emails and pick a template of your choice.
 
 ## Prerequisite
 
