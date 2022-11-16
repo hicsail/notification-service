@@ -2,41 +2,45 @@
 ![image](https://user-images.githubusercontent.com/62607343/202245103-044d5c0b-7dec-416b-a178-66b4875dc399.png)
 
 
+
 # NOTIFICATION-SERVICE
-Description of Project
 
-Notification Service as a Microservice for any SAIL projects.
+This paclage provides is a Microservice that lets you create email templates, queue your email on AWS SQS, and send the email through AWS SES.
 
-----
+## Prerequisite
 
-## How to use it?
+In order to run/develop this Microservice, your project needs the following packages installed:
+
+```
+    "node": "^14.15.0 || >=16.10.0",
+    "@ssut/nestjs-sqs": "^1.3.0",
+    "aws-sdk": "^2.1227.0",
+    "dotenv": "^16.0.3",
+    "sqs-producer": "^2.1.0",
+    "uuid": "^9.0.0"
+```
+
+## For users
+
+If you wish to use the notification service, please proceed to:
+
+https://github.com/hicsail/notification-service/tree/readMe/packages/client
+
+and follow the instruction.
 
 
-Requirements:
-Packages - List of the packages in the repo
+## For developers
 
+If you wish to create a new Email Template, please proceed to:
 
-If you're interested in 
+https://github.com/hicsail/notification-service/tree/readMe/packages/server/src/templates
 
-Devops URLs - TODO - Need deployment url, documentation url
-Prerequisites ➝  Example: https://github.com/open-sauced/open-sauced#-prerequisites, no that much details but node and aws info is needed.
-Installation
-Usage ➝ This usage if someone wanted to use the client as a developer not a server
-Contributing - TODO
-License
+and follow the guideline
 
-Same in the client and server add readme with:
-Prerequisites 
-node and aws info is needed.
-Installation
-Getting Started
-Development Guide
-Frameworks
-Tests
-Additional Scripts
+Please make sure to run everytime you push to the repository.
 
-List of good Readmes - https://dev.to/github/how-to-create-the-perfect-readme-for-your-open-source-project-1k69
-Readme tools - https://readme.so/
+```
+npm run prettier:fix
+npm run lint:fix
+```
 
-Information on client library to send an email. 
-Information on able to install it, how to use.
