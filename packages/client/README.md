@@ -15,7 +15,7 @@ In order to run/develop this Microservice, your project needs the following pack
     "uuid": "^9.0.0"
 ```
 
-## Installation:
+## Installation
 
 Please run the following command in your terminal.
 
@@ -25,7 +25,7 @@ npm i @bu-sail/notification-client
 
 More info at bu-sail/notification-client: https://www.npmjs.com/package/@bu-sail/notification-client
 
-## Usage:
+## Usage
 
 After installation you can use the module like the following example:
 
