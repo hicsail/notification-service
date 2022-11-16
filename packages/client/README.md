@@ -1,38 +1,31 @@
-# NOTIFICATION-SERVICE
-Description of Project
+## How to send emails
 
-Notification Service as a Microservice for any SAIL projects.
+Installation:
 
-----
+Please run the following command in your terminal.
 
-## How to use it?
+```
+npm i @bu-sail/notification-client
+```
 
+More info at bu-sail/notification-client: https://www.npmjs.com/package/@bu-sail/notification-client
 
-Requirements:
-Packages - List of the packages in the repo
+After installation you can use the module like the following example:
 
+```
+import { NotificationClient } from "@bu-sail/notification-client"
+var body =
+{
+        from: 'test@email.sail.codes',
+        to: 'hishii@bu.edu',
+        cc: [],
+        bcc: ['harunsobuishii547@gmail.com'],
+        subject: "Greetings",
+        message: '123',
+        altText: 'plain text'
+}
+var delaySeconds = 3
+NotificationClient.sendmessage(JSON.stringify(body), delaySeconds);
+```
 
-If you're interested in 
-
-Devops URLs - TODO - Need deployment url, documentation url
-Prerequisites ➝  Example: https://github.com/open-sauced/open-sauced#-prerequisites, no that much details but node and aws info is needed.
-Installation
-Usage ➝ This usage if someone wanted to use the client as a developer not a server
-Contributing - TODO
-License
-
-Same in the client and server add readme with:
-Prerequisites 
-node and aws info is needed.
-Installation
-Getting Started
-Development Guide
-Frameworks
-Tests
-Additional Scripts
-
-List of good Readmes - https://dev.to/github/how-to-create-the-perfect-readme-for-your-open-source-project-1k69
-Readme tools - https://readme.so/
-
-Information on client library to send an email. 
-Information on able to install it, how to use.
+Beware that cc and bcc takes array, rather than a single string.
