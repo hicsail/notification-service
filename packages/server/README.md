@@ -19,6 +19,13 @@ You may reference this example as a starting point https://github.com/hicsail/no
 If you are wondering how this whole module works, the templates.service.tsx will fetch and wrap your new template.
 https://github.com/hicsail/notification-service/blob/9d5a1b3fedae33c6b030ae70390bd98cd022c955/packages/server/src/templates/templates.service.tsx#L15
 
+Please remember to format your code before pushing to the repository.
+
+```
+npm run prettier:fix
+npm run lint:fix
+```
+
 ## Frameworks
 
 ## Tests
