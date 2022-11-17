@@ -45,6 +45,6 @@ npm run lint:fix
 ```
 
 
-## Contributing - TODO
-## License
+## Contributon - TODO
+## License - TODO
 
