@@ -39,4 +39,11 @@ If you wish to add a new Email Template for your project, please follow the link
 ## ⚖️ LICENSE
 
 
-## Resources
+## 📝 Resources
+
+<li> node js: https://nodejs.org/en/
+<li> typescript: https://www.typescriptlang.org/
+<li> nestjs-sqs: https://www.npmjs.com/package/@ssut/nestjs-sqs
+<li> aws-sdk: https://aws.amazon.com/developer/tools/
+<li> dotenv: https://www.npmjs.com/package/dotenv
+<li> sqs-producer: https://www.npmjs.com/package/sqs-producer
