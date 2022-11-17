@@ -34,10 +34,10 @@ $ npm run start:prod
 
 ## 🚧 Development Guide
 
-Please create a new template inside the src/templates/projects directory  <a href="https://github.com/hicsail/notification-service/tree/readMe/packages/server/src/templates/projects" target="_blank"><img src="https://user-images.githubusercontent.com/62607343/202501227-0fca85ce-9b77-4112-84c9-1c56a2a5d638.png" width="30" height="30" /></a>
+Please create a new template inside the src/templates/projects directory  <a href="https://github.com/hicsail/notification-service/tree/readMe/packages/server/src/templates/projects" target="_blank">➡️</a>
 
 
-You may reference this example as a starting point  <a href="https://github.com/hicsail/notification-service/blob/readMe/packages/server/src/templates/projects/passwordReset.tsx" target="_blank"><img src="https://user-images.githubusercontent.com/62607343/202501558-f832775c-22bf-43ce-9a48-dea10a449bcc.png" width="30" height="30" /></a>
+You may reference this example as a starting point  <a href="https://github.com/hicsail/notification-service/blob/readMe/packages/server/src/templates/projects/passwordReset.tsx" target="_blank">➡️</a>
 
 
 If you are wondering how this whole module works, the templates.service.tsx will fetch and wrap your new template 
