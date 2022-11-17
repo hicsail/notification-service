@@ -22,27 +22,16 @@ In order to run/develop this Microservice, your project needs the following pack
 
 ## For users
 
-If you wish to use the notification service, please proceed to:
+If you wish to use the notification service in your project, please follow the link below:
 
 https://github.com/hicsail/notification-service/tree/readMe/packages/client
-
-and follow the instruction.
 
 
 ## For developers
 
-If you wish to create a new Email Template, please proceed to:
+If you wish to add a new Email Template for your project, please follow the link below:
 
-https://github.com/hicsail/notification-service/tree/readMe/packages/server/src/templates
-
-and follow the guideline
-
-Please make sure to run everytime you push to the repository.
-
-```
-npm run prettier:fix
-npm run lint:fix
-```
+https://github.com/hicsail/notification-service/tree/readMe/packages/server
 
 
 ## Contributon - TODO
