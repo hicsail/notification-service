@@ -1,5 +1,6 @@
-
-![image](https://user-images.githubusercontent.com/62607343/202245103-044d5c0b-7dec-416b-a178-66b4875dc399.png)
+<p align="center">
+ <img src="https://user-images.githubusercontent.com/62607343/202245103-044d5c0b-7dec-416b-a178-66b4875dc399.png" width="200" alt="SAIL Logo" /></a>
+</p>
 
 
 
@@ -7,7 +8,8 @@
 
 This paclage provides is a Microservice that lets you create email templates, queue your email on AWS SQS, and send the email through AWS SES.
 
-## Prerequisite
+
+## 📖 Prerequisite
 
 In order to run/develop this Microservice, your project needs the following packages installed:
 
@@ -20,20 +22,21 @@ In order to run/develop this Microservice, your project needs the following pack
     "uuid": "^9.0.0"
 ```
 
-## For users
 
-If you wish to use the notification service in your project, please follow the link below:
+## 🖥️ For users
 
-https://github.com/hicsail/notification-service/tree/readMe/packages/client
-
-
-## For developers
-
-If you wish to add a new Email Template for your project, please follow the link below:
-
-https://github.com/hicsail/notification-service/tree/readMe/packages/server
+If you wish to use the notification service in your project, please follow the link: <a href="https://github.com/hicsail/notification-service/tree/readMe/packages/client" target="_blank">➡️</a>
 
 
-## Contributon - TODO
-## License - TODO
+## 🚧 For developers
 
+If you wish to add a new Email Template for your project, please follow the link:  <a href="https://github.com/hicsail/notification-service/tree/readMe/packages/server" target="_blank">➡️</a> 
+
+
+## 🤝 Contributing
+
+
+## ⚖️ LICENSE
+
+
+## Resources
