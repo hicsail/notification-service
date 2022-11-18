@@ -1,6 +1,7 @@
 import { Logger, Injectable } from '@nestjs/common';
 import { SqsMessageHandler, SqsConsumerEventHandler } from '@ssut/nestjs-sqs';
 import * as ses from 'node-ses';
+import * as AWS from 'aws-sdk';
 import { validate } from 'class-validator';
 import { plainToClass } from 'class-transformer';
 import { Email } from './validator/CustomEmailValidator_server';
