@@ -1,4 +1,4 @@
-import { Body, Controller, Post, UsePipes } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
 import { EmailService } from './email.service';
 import * as AWS from 'aws-sdk';
 
@@ -10,8 +10,8 @@ export class EmailController {
   async sendEmail(@Body() message: AWS.SQS.Message): Promise<void> {
     try {
       return this.emailService.handleMessage(message);
-    } catch(e) {
-      console.log(e)
+    } catch (e) {
+      console.log(e);
     }
   }
 }

@@ -31,7 +31,6 @@ export class EmailService {
   @SqsMessageHandler(/** name: */ 'notification queue', /** batch: */ false)
   public async handleMessage(message: AWS.SQS.Message) {
     this.logger.log('Message to be sent: ', message);
-    // const msg = JSON.parse(message.Body);
     const email = plainToClass(Email, message.Body);
 
     const check = await this.IsCompliantFormat(email);
@@ -45,6 +44,6 @@ export class EmailService {
 
   @SqsConsumerEventHandler(/** name: */ 'notification queue', /** eventName: */ 'processing_error')
   public onProcessingError(error: Error, message: AWS.SQS.Message) {
-    // report errors here
+    this.logger.error(`Processing error: ${error}\tmessage: ${message}`);
   }
 }
