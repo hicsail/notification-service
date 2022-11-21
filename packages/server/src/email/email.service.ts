@@ -30,7 +30,6 @@ export class EmailService {
 
   @SqsMessageHandler(/** name: */ 'notification queue', /** batch: */ false)
   public async handleMessage(message: AWS.SQS.Message) {
-    console.log(`message: ${JSON.stringify(message)}`)
     this.logger.log('Message to be sent: ', message);
     // const msg = JSON.parse(message.Body);
     const email = plainToClass(Email, message.Body);

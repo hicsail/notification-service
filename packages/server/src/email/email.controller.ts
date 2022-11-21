@@ -11,7 +11,6 @@ export class EmailController {
     try {
       return this.emailService.handleMessage(message);
     } catch(e) {
-      console.log(message)
       console.log(e)
     }
   }
