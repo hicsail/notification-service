@@ -32,8 +32,8 @@ export class EmailService {
   public async handleMessage(message: AWS.SQS.Message) {
     this.logger.log('Message to be sent: ', message);
     const email = plainToClass(Email, message.Body);
-
     const check = await this.IsCompliantFormat(email);
+
     if (check.length === 0) {
       await this.sendEmail(email);
       this.logger.log('The email was successfully sent');
