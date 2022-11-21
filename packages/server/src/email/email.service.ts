@@ -4,7 +4,7 @@ import * as ses from 'node-ses';
 import * as AWS from 'aws-sdk';
 import { validate } from 'class-validator';
 import { plainToClass } from 'class-transformer';
-import { Email } from './validator/CustomEmailValidator_server';
+import { Email } from './validator/CustomEmailValidatorServer';
 
 @Injectable()
 export class EmailService {
@@ -30,9 +30,10 @@ export class EmailService {
 
   @SqsMessageHandler(/** name: */ 'notification queue', /** batch: */ false)
   public async handleMessage(message: AWS.SQS.Message) {
+    console.log(`message: ${JSON.stringify(message)}`)
     this.logger.log('Message to be sent: ', message);
-    const msg = JSON.parse(message.Body);
-    const email = plainToClass(Email, msg);
+    // const msg = JSON.parse(message.Body);
+    const email = plainToClass(Email, message.Body);
 
     const check = await this.IsCompliantFormat(email);
     if (check.length === 0) {

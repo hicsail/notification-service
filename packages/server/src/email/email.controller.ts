@@ -7,8 +7,12 @@ export class EmailController {
   constructor(private readonly emailService: EmailService) {}
 
   @Post('/send')
-  @UsePipes()
   async sendEmail(@Body() message: AWS.SQS.Message): Promise<void> {
-    return this.emailService.handleMessage(message);
+    try {
+      return this.emailService.handleMessage(message);
+    } catch(e) {
+      console.log(message)
+      console.log(e)
+    }
   }
 }

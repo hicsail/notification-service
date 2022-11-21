@@ -1,4 +1,4 @@
-import { Length, IsEmail, IsArray, IsNotEmpty } from 'class-validator';
+import { Length, IsEmail, IsArray } from 'class-validator';
 
 export class Email<T = any> {
   @IsEmail({ message: 'You need a proper email address' })
