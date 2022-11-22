@@ -9,7 +9,7 @@ export class EmailController {
   @Post('send')
   async sendEmail(@Body() message: AWS.SQS.Message): Promise<void> {
     try {
-      return this.emailService.handleMessage(message);
+      this.emailService.handleMessage(message);
     } catch (e) {
       console.log(e);
     }
