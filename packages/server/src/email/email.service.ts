@@ -31,7 +31,7 @@ export class EmailService {
   @SqsMessageHandler(/** name: */ 'notification queue', /** batch: */ false)
   public async handleMessage(message: AWS.SQS.Message): Promise<void> {
     this.logger.log('Message to be sent: ', message);
-    const email = plainToClass(Email, message.Body);
+    const email = plainToClass(Email, JSON.parse(message.Body));
     const check = await this.isCompliantFormat(email);
 
     if (check.length === 0) {
