@@ -9,6 +9,11 @@
 This is a notification microservice that lets you create email templates, queue your email on AWS SQS, and send the email to users of your applications through AWS SES.
 
 
+## Packages
+<li> <a href="https://github.com/hicsail/notification-service/tree/readMe/packages/server/src/email"> Email Notification Service </a>
+<li> <a href="https://github.com/hicsail/notification-service/tree/readMe/packages/server/src/templates"> Email Template Service </a>
+<li> <a href="https://github.com/hicsail/notification-service/tree/readMe/packages/server/src/health">  Health Service </a>
+
 ## 📖 Prerequisite
 
 In order to run/develop this Microservice, your project needs the following dependecies:
@@ -20,6 +25,14 @@ In order to run/develop this Microservice, your project needs the following depe
     "dotenv": "^16.0.3",
     "sqs-producer": "^2.1.0",
     "uuid": "^9.0.0"
+```
+
+## Installation
+
+Please run the following in your command line at your desired directory
+
+```
+git clone git@github.com:hicsail/notification-service.git
 ```
 
 ## Devops URLs - TODO - Need deployment url, documentation url
@@ -42,9 +55,12 @@ If you wish to add a new Email Template for your project, please follow the link
 
 ## 📝 Resources
 
+<li> NestJS: https://docs.nestjs.com/
+<li> React: https://create-react-app.dev/docs/adding-typescript
 <li> node js: https://nodejs.org/en/
 <li> typescript: https://www.typescriptlang.org/
 <li> nestjs-sqs: https://www.npmjs.com/package/@ssut/nestjs-sqs
 <li> aws-sdk: https://aws.amazon.com/developer/tools/
 <li> dotenv: https://www.npmjs.com/package/dotenv
 <li> sqs-producer: https://www.npmjs.com/package/sqs-producer
+<li> mui server rendering: https://mui.com/material-ui/guides/server-rendering/
