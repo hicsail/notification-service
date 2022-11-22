@@ -39,9 +39,9 @@ Please also create .env file just beneath <a href ="https://github.com/hicsail/n
   
 <pre>
 AWS_REGION="us-east-1"
-AWS_ACCESS_KEY_ID="AKIAR7IMRMF74MFMOWEI"
-AWS_SECRET_ACCESS_KEY="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"
-SQS_QUEUE_URL ='https://sqs.us-east-1.amazonaws.com/135854645631/TestQueue'
+AWS_ACCESS_KEY_ID=""
+AWS_SECRET_ACCESS_KEY=""
+SQS_QUEUE_URL =''
 </pre>
 
 ## 🖥️ Running the server in your local
