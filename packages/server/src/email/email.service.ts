@@ -11,7 +11,7 @@ export class EmailService {
   private readonly client = ses.createClient({} as any);
   private readonly logger = new Logger(EmailService.name);
 
-  public async IsCompliantFormat(msg: Email) {
+  public async isCompliantFormat(msg: Email) {
     return validate(msg, { skipMissingProperties: true });
   }
 
@@ -32,7 +32,7 @@ export class EmailService {
   public async handleMessage(message: AWS.SQS.Message) {
     this.logger.log('Message to be sent: ', message);
     const email = plainToClass(Email, message.Body);
-    const check = await this.IsCompliantFormat(email);
+    const check = await this.isCompliantFormat(email);
 
     if (check.length === 0) {
       await this.sendEmail(email);
