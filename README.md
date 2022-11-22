@@ -6,12 +6,12 @@
 
 # NOTIFICATION-SERVICE
 
-This paclage provides is a Microservice that lets you create email templates, queue your email on AWS SQS, and send the email through AWS SES.
+This is a notification microservice that lets you create email templates, queue your email on AWS SQS, and send the email to users of your applications through AWS SES.
 
 
 ## 📖 Prerequisite
 
-In order to run/develop this Microservice, your project needs the following packages installed:
+In order to run/develop this Microservice, your project needs the following dependecies:
 
 ```
     "node": "^14.15.0 || >=16.10.0",
@@ -22,13 +22,14 @@ In order to run/develop this Microservice, your project needs the following pack
     "uuid": "^9.0.0"
 ```
 
+## Devops URLs - TODO - Need deployment url, documentation url
 
-## 🖥️ For users
+## 🖥️ For users of the notification service in your project
 
 If you wish to use the notification service in your project, please follow the link: <a href="https://github.com/hicsail/notification-service/tree/readMe/packages/client" target="_blank">➡️</a>
 
 
-## 🚧 For developers
+## 🚧 For developers who wishes to add Email templates
 
 If you wish to add a new Email Template for your project, please follow the link:  <a href="https://github.com/hicsail/notification-service/tree/readMe/packages/server" target="_blank">➡️</a> 
 
