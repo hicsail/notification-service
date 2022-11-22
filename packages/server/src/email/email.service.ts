@@ -1,16 +1,17 @@
 import { Logger, Injectable } from '@nestjs/common';
 import { SqsMessageHandler, SqsConsumerEventHandler } from '@ssut/nestjs-sqs';
 import * as ses from 'node-ses';
-import { validate } from 'class-validator';
+import * as AWS from 'aws-sdk';
+import { validate, ValidationError } from 'class-validator';
 import { plainToClass } from 'class-transformer';
-import { Email } from './validator/CustomEmailValidator_server';
+import { Email } from './validator/emailValidator.dto';
 
 @Injectable()
 export class EmailService {
   private readonly client = ses.createClient({} as any);
   private readonly logger = new Logger(EmailService.name);
 
-  public async IsCompliantFormat(msg: Email) {
+  public async isCompliantFormat(msg: Email): Promise<ValidationError[]> {
     return validate(msg, { skipMissingProperties: true });
   }
 
@@ -28,12 +29,11 @@ export class EmailService {
   }
 
   @SqsMessageHandler(/** name: */ 'notification queue', /** batch: */ false)
-  public async handleMessage(message: AWS.SQS.Message) {
+  public async handleMessage(message: AWS.SQS.Message): Promise<void> {
     this.logger.log('Message to be sent: ', message);
-    const msg = JSON.parse(message.Body);
-    const email = plainToClass(Email, msg);
+    const email = plainToClass(Email, JSON.parse(message.Body));
+    const check = await this.isCompliantFormat(email);
 
-    const check = await this.IsCompliantFormat(email);
     if (check.length === 0) {
       await this.sendEmail(email);
       this.logger.log('The email was successfully sent');
@@ -43,7 +43,7 @@ export class EmailService {
   }
 
   @SqsConsumerEventHandler(/** name: */ 'notification queue', /** eventName: */ 'processing_error')
-  public onProcessingError(error: Error, message: AWS.SQS.Message) {
-    // report errors here
+  public onProcessingError(error: Error, message: AWS.SQS.Message): void {
+    this.logger.error(`Processing error: ${error}\tmessage: ${message}`);
   }
 }
