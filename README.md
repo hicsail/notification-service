@@ -33,10 +33,10 @@ If you wish to use the notification service in your project, please follow the l
 If you wish to add a new Email Template for your project, please follow the link:  <a href="https://github.com/hicsail/notification-service/tree/readMe/packages/server" target="_blank">➡️</a> 
 
 
-## 🤝 Contributing
+## 🤝 Contributing -- TODO
 
 
-## ⚖️ LICENSE
+## ⚖️ LICENSE -- TODO
 
 
 ## 📝 Resources
