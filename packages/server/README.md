@@ -35,6 +35,15 @@ In order to develop and run the server code locally, you need the following deve
     "typescript": "^4.7.4"
 ```
 
+Please also create .env file just beneath <a href ="https://github.com/hicsail/notification-service/tree/readMe/packages/server">the server directory</a> and configure the following environmental variables:
+  
+<pre>
+AWS_REGION="us-east-1"
+AWS_ACCESS_KEY_ID="AKIAR7IMRMF74MFMOWEI"
+AWS_SECRET_ACCESS_KEY="rSK9OOMPcU/+UNFggzKdoh3QEtTln5XB34pAhh1P"
+SQS_QUEUE_URL ='https://sqs.us-east-1.amazonaws.com/135854645631/TestQueue'
+</pre>
+
 ## 🖥️ Running the server in your local
 
 ```
