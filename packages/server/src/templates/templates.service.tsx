@@ -6,13 +6,23 @@ import { CacheProvider } from '@emotion/react';
 import createEmotionServer from '@emotion/server/create-instance';
 import theme from './projects/common/theme';
 import createEmotionCache from './projects/common/createEmotionCache';
+import path from 'path';
+import { stat } from 'fs/promises';
 
 @Injectable()
 export class TemplatesService {
   private readonly logger = new Logger(TemplatesService.name);
 
   async getTemplate(templateName: string, props: any): Promise<any> {
-    const TemplateFile = await import('./projects/' + templateName).catch(err => {
+    const templatePath = path.join('./projects', templateName);
+    try {
+      await stat(templatePath);
+    } catch (error) {
+      this.logger.error(`Template ${templateName} not found`);
+      return null;
+    }
+
+    const TemplateFile = await import(templatePath).catch(err => {
       this.logger.log(err);
     })
     const SelectedTemplate = TemplateFile.default
