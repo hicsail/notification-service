@@ -35,7 +35,7 @@ In order to develop and run the server code locally, you need the following deve
     "typescript": "^4.7.4"
 ```
 
-## 🖥️ Running the app
+## 🖥️ Running the server in your local
 
 ```
 # development
@@ -70,8 +70,12 @@ npm run prettier:fix
 npm run lint:fix
 ```
 
+## Frameworks
+<li> <a href="https://docs.nestjs.com/"> NestJS </a>
+<li> <a href="https://create-react-app.dev/docs/adding-typescript/"> React </a>
 
-## 🧪 Test
+
+## 🧪 Tests
 
 ```bash
 # unit tests
@@ -88,6 +92,8 @@ $ npm run test:cov
 
 ## 📝 Resources
 
+<li> NestJS: https://docs.nestjs.com/
+<li> React: https://create-react-app.dev/docs/adding-typescript
 <li> node js: https://nodejs.org/en/
 <li> typescript: https://www.typescriptlang.org/
 <li> nestjs-sqs: https://www.npmjs.com/package/@ssut/nestjs-sqs
