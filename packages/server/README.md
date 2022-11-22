@@ -2,21 +2,15 @@
  <img src="https://user-images.githubusercontent.com/62607343/202245103-044d5c0b-7dec-416b-a178-66b4875dc399.png" width="200" alt="SAIL Logo" /></a>
 </p>
 
-# How to create templates
-
 
 ## 📖 Prerequisites 
 In order to run/develop this Microservice, your project needs the following packages installed:
 
 ```
-    "node": "^14.15.0 || >=16.10.0",
-    "@ssut/nestjs-sqs": "^1.3.0",
-    "aws-sdk": "^2.1227.0",
     "dotenv": "^16.0.3",
     "sqs-producer": "^2.1.0",
-    "uuid": "^9.0.0"
+    "yup": "^0.32.11"
 ```
-
 
 ## 🖥️ Running the app
 
@@ -67,15 +61,7 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
-
-## ⚖️ LICENSE  -- TODO
-
-
-## Frameworks  -- TODO
-
-
 ## Additional Scripts  -- TODO
-
 
 ## 📝 Resources
 
