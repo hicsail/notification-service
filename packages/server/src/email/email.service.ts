@@ -4,7 +4,7 @@ import * as ses from 'node-ses';
 import * as AWS from 'aws-sdk';
 import { validate } from 'class-validator';
 import { plainToClass } from 'class-transformer';
-import { Email } from './validator/CustomEmailValidatorServer';
+import { Email } from './validator/emailValidator.dto';
 
 @Injectable()
 export class EmailService {
