@@ -100,4 +100,4 @@ $ npm run test:cov
 <li> aws-sdk: https://aws.amazon.com/developer/tools/
 <li> dotenv: https://www.npmjs.com/package/dotenv
 <li> sqs-producer: https://www.npmjs.com/package/sqs-producer
-
+<li> mui server rendering: https://mui.com/material-ui/guides/server-rendering/
