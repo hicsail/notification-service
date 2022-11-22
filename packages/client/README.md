@@ -12,9 +12,9 @@ This client module lets you send emails and pick a template of your choice.
 In order to run/develop this Microservice, your project needs the following packages installed:
 
 <pre>
-    "dotenv": "^16.0.3",
-    "sqs-producer": "^2.1.0",
-    "yup": "^0.32.11"
+"dotenv": "^16.0.3",
+"sqs-producer": "^2.1.0",
+"yup": "^0.32.11"
 </pre>
 
 Please also create .env file in your project and configure the following environmental variables:
