@@ -68,13 +68,13 @@ $ npm run test:cov
 ```
 
 
-## ⚖️ LICENSE
+## ⚖️ LICENSE  -- TODO
 
 
-## Frameworks
+## Frameworks  -- TODO
 
 
-## Additional Scripts
+## Additional Scripts  -- TODO
 
 
 ## 📝 Resources
