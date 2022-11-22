@@ -12,10 +12,9 @@ This client module lets you send emails and pick a template of your choice.
 In order to run/develop this Microservice, your project needs the following packages installed:
 
 ```
-    "node": "^14.15.0 || >=16.10.0",
-    "aws-sdk": "^2.1227.0",
     "dotenv": "^16.0.3",
-    "uuid": "^9.0.0"
+    "sqs-producer": "^2.1.0",
+    "yup": "^0.32.11"
 ```
 
 ## 💾 Installation
@@ -47,16 +46,11 @@ var delaySeconds = 3
 NotificationClient.sendmessage(JSON.stringify(body), delaySeconds);
 ```
 
-## 🚧 Development Guide
-
-
-## 🤝 Contributing
-
-
-## ⚖️ LICENSE
-
-
 ## Frameworks
+<li> <a href="https://docs.nestjs.com/"> NestJS </a>
+
+
+## Tests -- TODO
 
 
 ## Additional Scripts
@@ -64,6 +58,7 @@ NotificationClient.sendmessage(JSON.stringify(body), delaySeconds);
 
 ## 📝 Resources
 
+<li> NestJS: https://docs.nestjs.com/
 <li> node js: https://nodejs.org/en/
 <li> typescript: https://www.typescriptlang.org/
 <li> nestjs-sqs: https://www.npmjs.com/package/@ssut/nestjs-sqs
