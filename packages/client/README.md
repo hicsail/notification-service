@@ -11,26 +11,35 @@ This client module lets you send emails and pick a template of your choice.
 
 In order to run/develop this Microservice, your project needs the following packages installed:
 
-```
+<pre>
     "dotenv": "^16.0.3",
     "sqs-producer": "^2.1.0",
     "yup": "^0.32.11"
-```
+</pre>
+
+Please also create .env file in your project and configure the following environmental variables:
+  
+<pre>
+AWS_REGION="us-east-1"
+AWS_ACCESS_KEY_ID="AKIAR7IMRMF74MFMOWEI"
+AWS_SECRET_ACCESS_KEY="rSK9OOMPcU/+UNFggzKdoh3QEtTln5XB34pAhh1P"
+SQS_QUEUE_URL ='https://sqs.us-east-1.amazonaws.com/135854645631/TestQueue'
+</pre>
 
 ## 💾 Installation
 
 Please run the following command in terminal in your project directory.
 
-```
+<pre>
 npm i @bu-sail/notification-client
-```
+</pre>
 More info at bu-sail/notification-client: <a href="https://www.npmjs.com/package/@bu-sail/notification-client" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
 
 ## 🖥️ Usage
 
 After installation you can use the module like the following example:
 
-```
+<pre>
 import { NotificationClient } from "@bu-sail/notification-client"
 var body =
 {
@@ -44,7 +53,7 @@ var body =
 }
 var delaySeconds = 3
 NotificationClient.sendmessage(JSON.stringify(body), delaySeconds);
-```
+</pre>
 
 ## Frameworks
 <li> <a href="https://docs.nestjs.com/"> NestJS </a>
