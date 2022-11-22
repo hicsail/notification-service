@@ -18,15 +18,24 @@ This is a notification microservice that lets you create email templates, queue 
 
 In order to run/develop this Microservice, your project needs the following dependecies:
 
-```
-    "node": "^14.15.0 || >=16.10.0",
-    "@ssut/nestjs-sqs": "^1.3.0",
-    "aws-sdk": "^2.1227.0",
-    "dotenv": "^16.0.3",
-    "sqs-producer": "^2.1.0",
-    "uuid": "^9.0.0"
-```
+<pre>
+"node": "^14.15.0 || >=16.10.0",
+"@ssut/nestjs-sqs": "^1.3.0",
+"aws-sdk": "^2.1227.0",
+"dotenv": "^16.0.3",
+"sqs-producer": "^2.1.0",
+"uuid": "^9.0.0"
+</pre>
 
+Please also create .env file in your project and configure the following environmental variables:
+  
+<pre>
+AWS_REGION="us-east-1"
+AWS_ACCESS_KEY_ID="AKIAR7IMRMF74MFMOWEI"
+AWS_SECRET_ACCESS_KEY="rSK9OOMPcU/+UNFggzKdoh3QEtTln5XB34pAhh1P"
+SQS_QUEUE_URL ='https://sqs.us-east-1.amazonaws.com/135854645631/TestQueue'
+</pre>
+  
 ## Installation
 
 Please run the following in your command line at your desired directory
