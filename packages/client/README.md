@@ -17,7 +17,7 @@ Assuming that you have cloned this repository in the
   <li> The notification service uses Node.js v16
 </ul></ul>
 
-2. In order to fetch all the required dependencies, please npm install in the client directory
+2. Fetch all the required dependencies by npm install in the client directory
 
 3. Please also create .env file in your project and configure the following environmental variables:
   
