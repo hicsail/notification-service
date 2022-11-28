@@ -19,7 +19,7 @@
 AWS_REGION="us-east-1"
 AWS_ACCESS_KEY_ID=""
 AWS_SECRET_ACCESS_KEY=""
-SQS_QUEUE_URL =''
+SQS_QUEUE_URL=""
 </pre>
 
 ## 🖥️ Running the server in your local
