@@ -35,7 +35,7 @@ git clone git@github.com:hicsail/notification-service.git
 AWS_REGION="us-east-1"
 AWS_ACCESS_KEY_ID=""
 AWS_SECRET_ACCESS_KEY=""
-SQS_QUEUE_URL =""
+SQS_QUEUE_URL=""
 </pre>
   
 ## Devops URLs - TODO - Need deployment url, documentation url
