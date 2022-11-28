@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { EmailController } from './email.controller';
 import { EmailService } from './email.service';
 import { SqsModule } from '@ssut/nestjs-sqs';
 import { ConfigService } from '@nestjs/config';
@@ -14,6 +15,7 @@ import { ConfigService } from '@nestjs/config';
       }
     })
   ],
+  controllers: [EmailController],
   providers: [EmailService]
 })
 export class EmailModule {}

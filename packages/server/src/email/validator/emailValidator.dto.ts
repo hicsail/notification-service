@@ -1,8 +1,9 @@
-import { Length, IsEmail, IsArray, IsNotEmpty } from 'class-validator';
+import { Length, IsEmail, IsArray, IsOptional } from 'class-validator';
 
 export class Email<T = any> {
+  @IsOptional()
   @IsEmail({ message: 'You need a proper email address' })
-  from: string;
+  from = 'noreply@email.sail.codes';
 
   @IsEmail()
   to: string;
