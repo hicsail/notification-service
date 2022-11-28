@@ -23,9 +23,10 @@ git clone git@github.com:hicsail/notification-service.git
 </pre>
 
 2. In order to run/develop the cloned Microservice project, please ensure that your environment meets the following requirement:
-
-<li> The notification service uses Node.js v16
-
+<ul><ul>
+  <li> The notification service uses Node.js v16
+</ul></ul>
+  
 3. Please also create .env file in your project and configure the following environmental variables:
   
 <pre>
