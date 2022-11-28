@@ -3,7 +3,7 @@ import { SqsMessageHandler, SqsConsumerEventHandler } from '@ssut/nestjs-sqs';
 import * as ses from 'node-ses';
 import * as AWS from 'aws-sdk';
 import { validate, ValidationError } from 'class-validator';
-import { plainToClass } from 'class-transformer';
+import { plainToInstance } from 'class-transformer';
 import { Email } from './validator/emailValidator.dto';
 
 @Injectable()
@@ -31,7 +31,7 @@ export class EmailService {
   @SqsMessageHandler(/** name: */ 'notification queue', /** batch: */ false)
   public async handleMessage(message: AWS.SQS.Message): Promise<void> {
     this.logger.log(`Message to be sent (type: ${typeof message}): ${message}, `);
-    const email = plainToClass(Email, message);
+    const email = plainToInstance(Email, message);
     const check = await this.isCompliantFormat(email);
 
     if (check.length === 0) {
