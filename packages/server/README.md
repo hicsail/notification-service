@@ -4,38 +4,16 @@
 
 
 ## 📖 Prerequisites 
-In order to develop and run the server code locally, you need the following development dependecies:
 
-<pre>
-"@nestjs/cli": "^9.0.0",
-"@nestjs/schematics": "^9.0.0",
-"@nestjs/testing": "^9.0.0",
-"@types/aws-lambda": "^8.10.106",
-"@types/express": "^4.17.13",
-"@types/jest": "28.1.8",
-"@types/node": "^16.0.0",
-"@types/react": "^18.0.24",
-"@types/react-dom": "^18.0.8",
-"@types/supertest": "^2.0.11",
-"@typescript-eslint/eslint-plugin": "^5.0.0",
-"@typescript-eslint/parser": "^5.0.0",
-"eslint": "^8.0.1",
-"eslint-config-prettier": "^8.3.0",
-"eslint-plugin-prettier": "^4.0.0",
-"jest": "28.1.3",
-"prettier": "^2.3.2",
-"serverless-jetpack": "^0.11.1",
-"serverless-offline": "^11.0.1",
-"source-map-support": "^0.5.20",
-"supertest": "^6.1.3",
-"ts-jest": "28.0.8",
-"ts-loader": "^9.2.3",
-"ts-node": "^10.0.0",
-"tsconfig-paths": "4.1.0",
-"typescript": "^4.7.4"
-</pre>
+1. In order to run/develop the cloned Microservice project, please ensure that your environment meets the following requirement:
 
-Please also create .env file just beneath <a href ="https://github.com/hicsail/notification-service/tree/readMe/packages/server">the server directory</a> and configure the following environmental variables:
+<ul><ul>
+  <li> The notification service uses Node.js v16
+</ul></ul>
+
+2. Fetch all the required dependencies by npm install in the server directory
+
+3. Please also create .env file just beneath <a href ="https://github.com/hicsail/notification-service/tree/readMe/packages/server">the server directory</a> and configure the following environmental variables:
   
 <pre>
 AWS_REGION="us-east-1"
