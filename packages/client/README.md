@@ -25,7 +25,7 @@ Assuming that you have cloned this repository in the
 AWS_REGION="us-east-1"
 AWS_ACCESS_KEY_ID=""
 AWS_SECRET_ACCESS_KEY=""
-SQS_QUEUE_URL =''
+SQS_QUEUE_URL=""
 </pre>
 
 ## 💾 Installation
@@ -49,7 +49,7 @@ var body =
         to: 'xxx@zzz',
         cc: ['xxx@zzz', 'aaa@bbb'],
         bcc: ['xxx@zzz', 'aaa@bbb'],  ///Beware that cc and bcc takes array and can not be a single string
-        subject: "Greetings",
+        subject: 'Greetings',
         message: '123',
         altText: 'plain text'
 }
