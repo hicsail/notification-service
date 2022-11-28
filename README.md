@@ -22,7 +22,7 @@ This is a notification microservice that lets you create email templates, queue 
 git clone git@github.com:hicsail/notification-service.git
 </pre>
 
-2. In order to run/develop the cloned Microservice project, please ensure your environment:
+2. In order to run/develop the cloned Microservice project, please ensure that your environment meets the following requirement:
 
 <li> The notification service uses Node.js v16
 
