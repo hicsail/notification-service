@@ -16,18 +16,19 @@ This is a notification microservice that lets you create email templates, queue 
 
 ## 📖 Prerequisite
 
-In order to run/develop this Microservice, your project needs the following dependecies:
+1. First of all, please clone this repository into your local:
 
 <pre>
-"node": "^14.15.0 || >=16.10.0",
-"@ssut/nestjs-sqs": "^1.3.0",
-"aws-sdk": "^2.1227.0",
-"dotenv": "^16.0.3",
-"sqs-producer": "^2.1.0",
-"uuid": "^9.0.0"
+git clone git@github.com:hicsail/notification-service.git
 </pre>
 
-Please also create .env file in your project and configure the following environmental variables:
+2. In order to run/develop the cloned Microservice project, please ensure your environment:
+
+<li> The notification service uses Node.js v16
+
+3. In order to fetch all the required dependencies, please npm install at the root directory of the project
+
+4. Please also create .env file in your project and configure the following environmental variables:
   
 <pre>
 AWS_REGION="us-east-1"
