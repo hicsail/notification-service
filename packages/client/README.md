@@ -9,15 +9,15 @@ This client module lets you send emails and pick a template of your choice.
 
 ## 📖  Prerequisite
 
-In order to run/develop this Microservice, your project needs the following packages installed:
+Assuming that you have cloned this repository in the 
 
-<pre>
-"dotenv": "^16.0.3",
-"sqs-producer": "^2.1.0",
-"yup": "^0.32.11"
-</pre>
+1. In order to run/develop the cloned Microservice project, please ensure that your environment meets the following requirement:
 
-Please also create .env file in your project and configure the following environmental variables:
+<li> The notification service uses Node.js v16
+
+2. In order to fetch all the required dependencies, please npm install in the client directory
+
+3. Please also create .env file in your project and configure the following environmental variables:
   
 <pre>
 AWS_REGION="us-east-1"
