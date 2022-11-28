@@ -8,7 +8,7 @@ import { ServiceConfigurationOptions } from 'aws-sdk/lib/service';
 async function bootstrap() {
   dotenv.config();
 
-  let serviceConfigOptions: ServiceConfigurationOptions = {
+  const serviceConfigOptions: ServiceConfigurationOptions = {
     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
     region: process.env.AWS_REGION,
