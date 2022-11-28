@@ -23,7 +23,7 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "prepare": "cd ../.. && husky install"
+    "prepare": "cd ../.. && husky install packages/server/.husky && husky install packages/client/.husky"
   },
   "dependencies": {
     "@emotion/css": "^11.10.0",

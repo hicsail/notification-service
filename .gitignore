@@ -2,6 +2,7 @@
 /dist
 /packages/server/node_modules
 /node_modules
+
 # Logs
 logs
 *.log
@@ -37,3 +38,6 @@ lerna-debug.log*
 
 # Environment variables
 .env
+
+# Pre-commit hooks
+.husky
