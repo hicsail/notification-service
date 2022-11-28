@@ -26,9 +26,7 @@ git clone git@github.com:hicsail/notification-service.git
 
 <li> The notification service uses Node.js v16
 
-3. In order to fetch all the required dependencies, please npm install at the root directory of the project
-
-4. Please also create .env file in your project and configure the following environmental variables:
+3. Please also create .env file in your project and configure the following environmental variables:
   
 <pre>
 AWS_REGION="us-east-1"
