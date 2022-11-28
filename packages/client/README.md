@@ -13,7 +13,9 @@ Assuming that you have cloned this repository in the
 
 1. In order to run/develop the cloned Microservice project, please ensure that your environment meets the following requirement:
 
-<li> The notification service uses Node.js v16
+<ul><ul>
+  <li> The notification service uses Node.js v16
+</ul></ul>
 
 2. In order to fetch all the required dependencies, please npm install in the client directory
 
