@@ -1,40 +1,30 @@
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
+ <img src="https://user-images.githubusercontent.com/62607343/202245103-044d5c0b-7dec-416b-a178-66b4875dc399.png" width="200" alt="SAIL Logo" /></a>
 </p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## 📖 Prerequisites 
 
-## Description
+1. In order to run/develop the cloned Microservice project, please ensure that your environment meets the following requirement:
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+<ul><ul>
+  <li> The notification service uses Node.js v16
+</ul></ul>
 
-## Installation
+2. Fetch all the required dependencies by npm install in the server directory
 
-```bash
-$ npm install
+3. Please also create .env file just beneath <a href ="https://github.com/hicsail/notification-service/tree/readMe/packages/server">the server directory</a> and configure the following environmental variables:
+  
+<pre>
+AWS_REGION="us-east-1"
+AWS_ACCESS_KEY_ID=""
+AWS_SECRET_ACCESS_KEY=""
+SQS_QUEUE_URL=""
+</pre>
+
+## 🖥️ Running the server in your local
+
 ```
-
-## Running the app
-
-```bash
 # development
 $ npm run start
 
@@ -45,7 +35,34 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-## Test
+
+## 🚧 Development Guide
+
+Please create a new template inside the src/templates/projects directory  <a href="https://github.com/hicsail/notification-service/tree/readMe/packages/server/src/templates/projects" target="_blank">➡️</a>
+
+
+You may reference this example as a starting point  <a href="https://github.com/hicsail/notification-service/blob/readMe/packages/server/src/templates/projects/passwordReset.tsx" target="_blank">➡️</a>
+
+
+If you are wondering how this whole module works, the templates.service.tsx will fetch and wrap your new template 
+https://github.com/hicsail/notification-service/blob/9d5a1b3fedae33c6b030ae70390bd98cd022c955/packages/server/src/templates/templates.service.tsx#L15
+
+
+## 🎨 Code linting
+
+✅ Before you push your changes to the repository, please remember to format your code.
+
+```
+npm run prettier:fix
+npm run lint:fix
+```
+
+## Frameworks
+<li> <a href="https://docs.nestjs.com/"> NestJS </a>
+<li> <a href="https://create-react-app.dev/docs/adding-typescript/"> React </a>
+
+
+## 🧪 Tests
 
 ```bash
 # unit tests
@@ -58,16 +75,16 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
-## Support
+## Additional Scripts  -- TODO
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+## 📝 Resources
 
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+<li> NestJS: https://docs.nestjs.com/
+<li> React: https://create-react-app.dev/docs/adding-typescript
+<li> node js: https://nodejs.org/en/
+<li> typescript: https://www.typescriptlang.org/
+<li> nestjs-sqs: https://www.npmjs.com/package/@ssut/nestjs-sqs
+<li> aws-sdk: https://aws.amazon.com/developer/tools/
+<li> dotenv: https://www.npmjs.com/package/dotenv
+<li> sqs-producer: https://www.npmjs.com/package/sqs-producer
+<li> mui server rendering: https://mui.com/material-ui/guides/server-rendering/
