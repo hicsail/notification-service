@@ -1,8 +1,22 @@
+import * as dotenv from 'dotenv';
 import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
+import * as AWS from 'aws-sdk';
+import { ServiceConfigurationOptions } from 'aws-sdk/lib/service';
 
 async function bootstrap() {
+  dotenv.config();
+
+  const serviceConfigOptions: ServiceConfigurationOptions = {
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+    region: process.env.AWS_REGION,
+    endpoint: process.env.LOCAL_QUEUE_URL
+  };
+
+  AWS.config.update(serviceConfigOptions);
+
   const app = await NestFactory.create(AppModule);
   const config = new DocumentBuilder()
     .setTitle('Notification Service')
