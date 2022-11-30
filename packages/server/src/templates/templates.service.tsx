@@ -6,26 +6,22 @@ import { CacheProvider } from '@emotion/react';
 import createEmotionServer from '@emotion/server/create-instance';
 import theme from './projects/common/theme';
 import createEmotionCache from './projects/common/createEmotionCache';
-import path from 'path';
-import { stat } from 'fs/promises';
 
 @Injectable()
 export class TemplatesService {
   private readonly logger = new Logger(TemplatesService.name);
 
+  /**
+   * Get the template based on the given name.
+   *
+   * Will return null if the template is not found.
+   */
   async getTemplate(templateName: string, props: any): Promise<any> {
-    const templatePath = path.join('./projects', templateName);
-    try {
-      await stat(templatePath);
-    } catch (error) {
-      this.logger.error(`Template ${templateName} not found`);
+    // Get the template file
+    const SelectedTemplate = await this.importTemplate(templateName);
+    if (SelectedTemplate === null) {
       return null;
     }
-
-    const TemplateFile = await import(templatePath).catch(err => {
-      this.logger.log(err);
-    })
-    const SelectedTemplate = TemplateFile.default
 
     const cache = createEmotionCache();
     const { extractCriticalToChunks, constructStyleTagsFromChunks } = createEmotionServer(cache);
@@ -57,5 +53,23 @@ export class TemplatesService {
         </body>
       </html>
     )
+  }
+
+  /**
+   * Helper function which handles the dynamic import of the correct template.
+   * Returns null if the template with the given name is not found.
+   *
+   * Supports folder structure.
+   *
+   * @param templateName The name of the template to import
+   */
+  private async importTemplate(templateName: string): Promise<any> {
+    try {
+      const mod = await import('./projects/'+ templateName);
+      return mod.default;
+    } catch (error) {
+      this.logger.debug(`Template ${templateName} not found`);
+      return null;
+    }
   }
 }
