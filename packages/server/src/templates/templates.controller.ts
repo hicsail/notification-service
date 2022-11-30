@@ -15,11 +15,10 @@ export class TemplatesController {
    */
   @Post('/preview/:templateName')
   async postTemplate(@Param('templateName') templateName: string, @Body() body: any): Promise<any> {
-    const template = await this.templateService.getTemplate(templateName, body);
-
-    if (template === null) {
+    try {
+      return await this.templateService.getTemplate(templateName, body);
+    } catch (e) {
       throw new HttpException('Template not found', HttpStatus.NOT_FOUND);
     }
-    return template;
   }
 }

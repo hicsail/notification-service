@@ -12,22 +12,22 @@ export class TemplatesService {
   private readonly logger = new Logger(TemplatesService.name);
 
   /**
-   * Get the template based on the given name.
+   * Get the rendered template based on the given template name.
    *
-   * Will return null if the template is not found.
+   * Will throw an error if the template is not found.
    */
-  async getTemplate(templateName: string, props: any): Promise<any> {
+  async getTemplate(templateName: string, props: any): Promise<string> {
     // Get the template file
     const SelectedTemplate = await this.importTemplate(templateName);
     if (SelectedTemplate === null) {
-      return null;
+      throw new Error(`Template ${templateName} not found`);
     }
 
     const cache = createEmotionCache();
     const { extractCriticalToChunks, constructStyleTagsFromChunks } = createEmotionServer(cache);
 
     // Render the component to a string.
-    const html = ReactDOMServer.renderToString(
+    const body = (
       <CacheProvider value={cache} >
         <ThemeProvider theme={theme} >
           <CssBaseline />
@@ -37,22 +37,22 @@ export class TemplatesService {
     );
 
     // Grab the CSS from emotion
-    const emotionChunks = extractCriticalToChunks(html);
+    const emotionChunks = extractCriticalToChunks(ReactDOMServer.renderToString(body));
     const emotionCss = constructStyleTagsFromChunks(emotionChunks);
 
-    return (
+    return ReactDOMServer.renderToString(
       <html>
         <head>
           <title>My page</title>
-          ${emotionCss}
+          <style>{emotionCss}</style>
           <meta name="viewport" content="initial-scale=1, width=device-width" />
           <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
         </head>
         <body>
-          <div id="root">${html}</div>
+          <div id="root">{body}</div>
         </body>
       </html>
-    )
+    );
   }
 
   /**
