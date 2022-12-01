@@ -38,6 +38,3 @@ lerna-debug.log*
 
 # Environment variables
 .env
-
-# Pre-commit hooks
-.husky
