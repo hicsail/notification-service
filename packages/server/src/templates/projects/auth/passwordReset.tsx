@@ -10,7 +10,7 @@ export interface ForgotPasswordProps {
 export default function (props: ForgotPasswordProps) {
 
     return (
-      <EmailTemplate title="Password Reset" footer="You are receiving this because a request to reset your password was made">
+      <EmailTemplate title="Password Reset">
         <Box
             sx={{
                 marginTop: 10,
