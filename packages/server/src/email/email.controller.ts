@@ -1,17 +1,13 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { EmailService } from './email.service';
-import * as AWS from 'aws-sdk';
+import { Email } from './validator/emailValidator.dto';
 
 @Controller('email')
 export class EmailController {
   constructor(private readonly emailService: EmailService) {}
 
   @Post('send')
-  async sendEmail(@Body() message: AWS.SQS.Message): Promise<void> {
-    try {
-      this.emailService.handleMessage(message);
-    } catch (e) {
-      console.log(e);
-    }
+  async sendEmail(@Body() email: Email) {
+    return this.emailService.sendEmail(email);
   }
 }

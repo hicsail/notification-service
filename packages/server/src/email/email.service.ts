@@ -1,4 +1,4 @@
-import { Logger, Injectable } from '@nestjs/common';
+import { Logger, Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { SqsMessageHandler, SqsConsumerEventHandler } from '@ssut/nestjs-sqs';
 import * as ses from 'node-ses';
 import * as AWS from 'aws-sdk';
@@ -11,12 +11,25 @@ export class EmailService {
   private readonly client = ses.createClient({} as any);
   private readonly logger = new Logger(EmailService.name);
 
+  /**
+   * Validate the format of the message
+   * @param msg
+   */
   public async isCompliantFormat(msg: Email): Promise<ValidationError[]> {
     return validate(msg, { skipMissingProperties: true });
   }
 
-  public sendEmail(msg: Email): Promise<ses.SendEmailData> {
-    // Give SES the details and let it construct the message for you.
+  /**
+   * Send an email using AWS SES
+   * @param msg
+   */
+  public async sendEmail(msg: Email): Promise<ses.SendEmailData> {
+    msg.from = msg.from || 'noreply@email.sail.codes';
+    const email = plainToInstance(Email, msg);
+    const errors = await this.isCompliantFormat(email);
+    if (errors.length > 0) {
+      throw new HttpException(errors, HttpStatus.BAD_REQUEST);
+    }
     return new Promise((resolve, reject) => {
       this.client.sendEmail(msg, (err, data) => {
         if (err) {
@@ -32,14 +45,7 @@ export class EmailService {
   public async handleMessage(message: AWS.SQS.Message): Promise<void> {
     this.logger.log(`Message to be sent (type: ${typeof message}): ${message}, `);
     const email = plainToInstance(Email, message);
-    const check = await this.isCompliantFormat(email);
-
-    if (check.length === 0) {
-      await this.sendEmail(email);
-      this.logger.log('The email was successfully sent');
-    } else {
-      this.logger.error('Format Validation Error', check);
-    }
+    await this.sendEmail(email);
   }
 
   @SqsConsumerEventHandler(/** name: */ 'notification queue', /** eventName: */ 'processing_error')
