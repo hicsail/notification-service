@@ -1,15 +1,30 @@
-import { Logger, Injectable } from '@nestjs/common';
+import {Injectable, Logger} from '@nestjs/common';
 import ReactDOMServer from 'react-dom/server';
 import CssBaseline from '@mui/material/CssBaseline';
-import { ThemeProvider } from '@mui/material/styles';
-import { CacheProvider } from '@emotion/react';
+import {ThemeProvider} from '@mui/material/styles';
+import {CacheProvider} from '@emotion/react';
 import createEmotionServer from '@emotion/server/create-instance';
-import theme from './projects/common/theme';
-import createEmotionCache from './projects/common/createEmotionCache';
+import theme from './common/theme';
+import createEmotionCache from './common/createEmotionCache';
+import {deepReadDir} from "../util/deepread";
 
 @Injectable()
 export class TemplatesService {
   private readonly logger = new Logger(TemplatesService.name);
+
+  /**
+   * Get a list of all template names
+   */
+  async getTemplates(): Promise<string[]> {
+    const dir = __dirname + '/projects';
+    return (await deepReadDir(dir)).flat().filter(template => {
+      // Filter to only js files
+      return template.endsWith('.js') && !template.endsWith('.d.tsx');
+    }).map(template => {
+      //remove the .js extension and the dir path
+      return template.split('/projects/')[1].replace('.js', '')
+    });
+  }
 
   /**
    * Get the rendered template based on the given template name.

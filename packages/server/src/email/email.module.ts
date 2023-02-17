@@ -3,9 +3,11 @@ import { EmailController } from './email.controller';
 import { EmailService } from './email.service';
 import { SqsModule } from '@ssut/nestjs-sqs';
 import { ConfigService } from '@nestjs/config';
+import { TemplatesModule } from '../templates/templates.module';
 
 @Module({
   imports: [
+    TemplatesModule,
     SqsModule.registerAsync({
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => {
