@@ -8,8 +8,8 @@
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
-    "prettier": "prettier -l \"src/**/*.ts\" \"test/**/*.ts\"",
-    "prettier:fix": "prettier -wl \"src/**/*.ts\" \"test/**/*.ts\"",
+    "prettier": "prettier -l \"src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
+    "prettier:fix": "prettier -wl \"src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
     "prestart": "npm run build",
     "start": "nest start",
     "start:dev": "nest start --watch",

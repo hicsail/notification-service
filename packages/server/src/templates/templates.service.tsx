@@ -1,12 +1,11 @@
-import {Injectable, Logger} from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import ReactDOMServer from 'react-dom/server';
 import CssBaseline from '@mui/material/CssBaseline';
-import {ThemeProvider} from '@mui/material/styles';
-import {CacheProvider} from '@emotion/react';
+import { ThemeProvider } from '@mui/material/styles';
 import createEmotionServer from '@emotion/server/create-instance';
 import theme from './common/theme';
 import createEmotionCache from './common/createEmotionCache';
-import {deepReadDir} from "../util/deepread";
+import { deepReadDir } from '../util/deepread';
 
 @Injectable()
 export class TemplatesService {
@@ -17,13 +16,16 @@ export class TemplatesService {
    */
   async getTemplates(): Promise<string[]> {
     const dir = __dirname + '/projects';
-    return (await deepReadDir(dir)).flat().filter(template => {
-      // Filter to only js files
-      return template.endsWith('.js') && !template.endsWith('.d.tsx');
-    }).map(template => {
-      //remove the .js extension and the dir path
-      return template.split('/projects/')[1].replace('.js', '')
-    });
+    return (await deepReadDir(dir))
+      .flat()
+      .filter((template) => {
+        // Filter to only js files
+        return template.endsWith('.js') && !template.endsWith('.d.tsx');
+      })
+      .map((template) => {
+        //remove the .js extension and the dir path
+        return template.split('/projects/')[1].replace('.js', '');
+      });
   }
 
   /**
@@ -42,32 +44,25 @@ export class TemplatesService {
     const { extractCriticalToChunks, constructStyleTagsFromChunks } = createEmotionServer(cache);
 
     // Render the component to a string.
-    const body = (
-      <CacheProvider value={cache} >
-        <ThemeProvider theme={theme} >
-          <CssBaseline />
-          <SelectedTemplate props={props} />
-        </ThemeProvider>
-      </CacheProvider>
+    const App = (
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <SelectedTemplate props={props} />
+      </ThemeProvider>
     );
 
-    // Grab the CSS from emotion
-    const emotionChunks = extractCriticalToChunks(ReactDOMServer.renderToString(body));
-    const emotionCss = constructStyleTagsFromChunks(emotionChunks);
+    const body = ReactDOMServer.renderToString(App);
 
-    return ReactDOMServer.renderToString(
+    return `
       <html>
         <head>
-          <title>My page</title>
-          <style>{emotionCss}</style>
           <meta name="viewport" content="initial-scale=1, width=device-width" />
           <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
         </head>
         <body>
-          <div id="root">{body}</div>
+          <div id="root">${body}</div>
         </body>
-      </html>
-    );
+      </html>`;
   }
 
   /**
@@ -80,7 +75,7 @@ export class TemplatesService {
    */
   private async importTemplate(templateName: string): Promise<any> {
     try {
-      const mod = await import('./projects/'+ templateName);
+      const mod = await import('./projects/' + templateName);
       return mod.default;
     } catch (error) {
       this.logger.debug(`Template ${templateName} not found`);

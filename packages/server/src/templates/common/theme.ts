@@ -1,17 +1,20 @@
 import { createTheme } from '@mui/material/styles';
-import { red } from '@mui/material/colors';
 
 // Create a theme instance.
 const theme = createTheme({
+  shape: {
+    borderRadius: 8
+  },
+  typography: {
+    fontFamily: "'Roboto', sans-serif",
+    button: {
+      textTransform: 'none'
+    }
+  },
   palette: {
-    primary: {
-      main: '#556cd6'
-    },
-    secondary: {
-      main: '#19857b'
-    },
-    error: {
-      main: red.A400
+    background: {
+      default: '#E0E0E0',
+      paper: '#FFFFFF'
     }
   }
 });

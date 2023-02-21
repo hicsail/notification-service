@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsArray, IsEmail, IsString, Length, IsOptional } from 'class-validator';
+import { IsArray, IsEmail, IsOptional, IsString, Length } from 'class-validator';
 
 export class Email {
   @ApiProperty({ description: 'The email address of the sender', default: 'noreply@email.sail.codes', required: false })
