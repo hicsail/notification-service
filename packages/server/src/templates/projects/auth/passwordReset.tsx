@@ -1,43 +1,40 @@
-import Button from '@mui/material/Button';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
+import { FC } from 'react';
+import { Avatar, Box, Button, Divider, Stack, Typography } from '@mui/material';
+import { BasicCard } from '../../layouts/basic-card';
 
 export interface ForgotPasswordProps {
-    link: string;
+  link: string;
+  project?: {
+    name?: string;
+    logo?: string;
+    homepage?: string;
+  };
 }
 
-export default function (props: ForgotPasswordProps) {
+const PasswordReset: FC<ForgotPasswordProps> = (props) => {
+  return (
+    <BasicCard>
+      <Box
+        component='a'
+        sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', textDecoration: 'none', color: 'inherit', flexGrow: 1 }}
+        target='_blank'
+        href={props.project?.homepage || 'https://sail.bu.edu'}>
+        <Avatar sx={{ width: 36, height: 36, mr: 1 }} src={props.project?.logo || 'https://sail.codes/img/s_logo.png'} />
+        <Typography component='span' variant='h5'>
+          {props.project?.name || 'SAIL'}
+        </Typography>
+      </Box>
+      <Divider sx={{ my: 2 }} />
+      <Stack spacing={2} sx={{ mb: 2 }}>
+        <Typography>We've received a request to reset your password. No changes have been made to your account yet.</Typography>
+        <Typography>You can reset your password by clicking the link below.</Typography>
+        <Button type='submit' fullWidth variant='contained' href={props.link} sx={{ mt: 2, mb: 1 }} disableElevation>
+          Reset your password
+        </Button>
+        <Typography>If you didn't request a password reset, you can safely ignore this email.</Typography>
+      </Stack>
+    </BasicCard>
+  );
+};
 
-    return (
-        <Container component="main" maxWidth="xs">
-            <Box
-                sx={{
-                    marginTop: 10,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                }}
-            >
-                <Typography component="h1" variant="h5">
-                    Reset Password
-                </Typography>
-                <br></br>
-                <br></br>
-                <div>You may reset your password following the link below</div>
-                <Box component="form" noValidate sx={{ mt: 1 }}>
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        sx={{ mt: 3, mb: 2 }}
-                        href={props.link}
-                    >
-                        Reset Password
-                    </Button>
-                </Box>
-                <br></br>
-                <div>If you did not request a PW reset, please ignore this email </div>
-            </Box>
-        </Container>)
-}
+export default PasswordReset;
