@@ -32,4 +32,16 @@ export class TemplatesController {
       throw new HttpException('Template not found', HttpStatus.NOT_FOUND);
     }
   }
+
+  /**
+   * Preview a template by name without data
+   */
+  @Get('/preview/:templateName')
+  async getTemplate(@Param('templateName') templateName: string): Promise<any> {
+    try {
+      return await this.templateService.getTemplate(templateName, {});
+    } catch (e) {
+      throw new HttpException('Template not found', HttpStatus.NOT_FOUND);
+    }
+  }
 }
