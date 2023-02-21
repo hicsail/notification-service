@@ -42,7 +42,7 @@ export class TemplatesService {
     const App = (
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <SelectedTemplate props={props} />
+        <SelectedTemplate {...props} />
       </ThemeProvider>
     );
 
