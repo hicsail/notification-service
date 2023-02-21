@@ -1,10 +1,12 @@
-import { Body, Controller, Get, HttpException, HttpStatus, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, HttpException, HttpStatus, Logger, Param, Post } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { TemplatesService } from './templates.service';
 
 @ApiTags('Templates')
 @Controller('templates')
 export class TemplatesController {
+  private readonly logger = new Logger(TemplatesController.name);
+
   constructor(private readonly templateService: TemplatesService) {}
 
   /**
@@ -41,6 +43,7 @@ export class TemplatesController {
     try {
       return await this.templateService.getTemplate(templateName, {});
     } catch (e) {
+      this.logger.error(e);
       throw new HttpException('Template not found', HttpStatus.NOT_FOUND);
     }
   }

@@ -2,10 +2,9 @@ import { Injectable, Logger } from '@nestjs/common';
 import ReactDOMServer from 'react-dom/server';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
-import createEmotionServer from '@emotion/server/create-instance';
 import theme from './common/theme';
-import createEmotionCache from './common/createEmotionCache';
 import { deepReadDir } from '../util/deepread';
+import inlineCss from 'inline-css';
 
 @Injectable()
 export class TemplatesService {
@@ -40,10 +39,6 @@ export class TemplatesService {
       throw new Error(`Template ${templateName} not found`);
     }
 
-    const cache = createEmotionCache();
-    const { extractCriticalToChunks, constructStyleTagsFromChunks } = createEmotionServer(cache);
-
-    // Render the component to a string.
     const App = (
       <ThemeProvider theme={theme}>
         <CssBaseline />
@@ -52,8 +47,7 @@ export class TemplatesService {
     );
 
     const body = ReactDOMServer.renderToString(App);
-
-    return `
+    const html = `
       <html>
         <head>
           <meta name="viewport" content="initial-scale=1, width=device-width" />
@@ -63,6 +57,9 @@ export class TemplatesService {
           <div id="root">${body}</div>
         </body>
       </html>`;
+    return inlineCss(html, {
+      url: 'required but not used'
+    });
   }
 
   /**
