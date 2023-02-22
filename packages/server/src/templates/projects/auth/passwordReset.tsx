@@ -25,14 +25,12 @@ const PasswordReset: FC<ForgotPasswordProps> = (props) => {
         </Typography>
       </Box>
       <Divider sx={{ my: 2 }} />
-      <Stack spacing={2} sx={{ mb: 2 }}>
-        <Typography>We've received a request to reset your password. No changes have been made to your account yet.</Typography>
-        <Typography>You can reset your password by clicking the link below.</Typography>
-        <Button type='submit' fullWidth variant='contained' href={props.link} sx={{ mt: 2, mb: 1 }} disableElevation>
-          Reset your password
-        </Button>
-        <Typography>If you didn't request a password reset, you can safely ignore this email.</Typography>
-      </Stack>
+      <Typography>We've received a request to reset your password. No changes have been made to your account yet.</Typography>
+      <Typography>You can reset your password by clicking the link below.</Typography>
+      <Button component='a' fullWidth variant='contained' href={props.link} target='_blank' sx={{ mt: 2, mb: 1 }} disableElevation>
+        Reset your password
+      </Button>
+      <Typography>If you didn't request a password reset, you can safely ignore this email.</Typography>
     </BasicCard>
   );
 };
