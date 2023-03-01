@@ -7,7 +7,8 @@ import { TemplatesModule } from '../templates/templates.module';
 
 @Module({
   imports: [
-    TemplatesModule,
+    TemplatesModule
+    /*
     SqsModule.registerAsync({
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => {
@@ -16,6 +17,7 @@ import { TemplatesModule } from '../templates/templates.module';
         };
       }
     })
+     */
   ],
   controllers: [EmailController],
   providers: [EmailService]

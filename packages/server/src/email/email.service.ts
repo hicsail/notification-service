@@ -1,5 +1,5 @@
 import { HttpException, HttpStatus, Injectable, Logger } from '@nestjs/common';
-import { SqsConsumerEventHandler, SqsMessageHandler } from '@ssut/nestjs-sqs';
+//import { SqsConsumerEventHandler, SqsMessageHandler } from '@ssut/nestjs-sqs';
 import * as AWS from 'aws-sdk';
 import { validate, ValidationError } from 'class-validator';
 import { plainToInstance } from 'class-transformer';
@@ -78,14 +78,14 @@ export class EmailService {
     });
   }
 
-  @SqsMessageHandler(/** name: */ 'notification queue', /** batch: */ false)
+  //@SqsMessageHandler(/** name: */ 'notification queue', /** batch: */ false)
   public async handleMessage(message: AWS.SQS.Message): Promise<void> {
     this.logger.log(`Message to be sent (type: ${typeof message}): ${message}, `);
     const email = plainToInstance(Email, message);
     await this.sendEmail(email);
   }
 
-  @SqsConsumerEventHandler(/** name: */ 'notification queue', /** eventName: */ 'processing_error')
+  //@SqsConsumerEventHandler(/** name: */ 'notification queue', /** eventName: */ 'processing_error')
   public onProcessingError(error: Error, message: AWS.SQS.Message): void {
     this.logger.error(`Processing error: ${error}\tmessage: ${message}`);
   }
