@@ -3,7 +3,7 @@ import { HttpException, HttpStatus, Injectable, Logger } from '@nestjs/common';
 import * as AWS from 'aws-sdk';
 import { validate, ValidationError } from 'class-validator';
 import { plainToInstance } from 'class-transformer';
-import { Email } from './validator/emailValidator.dto';
+import { Email } from './validator/email.dto';
 import { TemplatesService } from '../templates/templates.service';
 
 @Injectable()
@@ -43,7 +43,7 @@ export class EmailService {
       this.client.sendEmail(
         {
           Destination: {
-            ToAddresses: [email.to],
+            ToAddresses: email.to,
             CcAddresses: email.cc,
             BccAddresses: email.bcc
           },

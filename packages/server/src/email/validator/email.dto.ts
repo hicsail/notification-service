@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsArray, IsEmail, IsOptional, IsString, Length } from 'class-validator';
+import { IsArray, IsEmail, IsOptional, IsString, ValidateIf } from 'class-validator';
 
 export class Email {
   @ApiProperty({ description: 'The email address of the sender', default: 'noreply@email.sail.codes', required: false })
@@ -7,41 +7,40 @@ export class Email {
   @IsOptional()
   from: string;
 
-  @ApiProperty({ description: 'The email address to send to' })
-  @IsEmail()
-  to: string;
+  @ApiProperty({ description: 'The email addresses to send to' })
+  @IsEmail({ each: true, message: 'to must contain valid email addresses' })
+  @IsArray()
+  to: string[];
 
   @ApiProperty({ description: 'The subject of the email', example: 'Hello from Sail' })
-  @Length(0, 50, { message: 'Subject body cannot exceed 50 chars' })
   @IsString()
   subject: string;
 
-  @ApiProperty({ description: 'The body of the email, plain text', example: 'Reaching out to say hi!', required: false })
-  @Length(0, 1000, { message: 'Message body cannot exceed 1000 chars' })
+  @ApiProperty({ description: 'The body of the email in plain text, required if no template is provided', example: 'Reaching out to say hi!', required: false })
   @IsString()
-  @IsOptional()
+  @ValidateIf((email) => !email.template, { message: 'Must use a message if no template is present' })
   message: string;
 
   @ApiProperty({ description: 'The email address to reply to', required: false })
-  @IsEmail({ message: 'You need a proper email address' })
+  @IsEmail({ message: 'Replay to must contain a valid email address' })
   @IsOptional()
   replyTo?: string;
 
   @ApiProperty({ description: 'Add carbon copy email addresses', required: false })
   @IsArray()
-  @IsEmail({ each: true, message: 'CC needs a proper email address' })
+  @IsEmail({ each: true, message: 'CC must contain valid email addresses' })
   @IsOptional()
   cc?: string[];
 
   @ApiProperty({ description: 'Add blind carbon copy email addresses', required: false })
   @IsArray()
-  @IsEmail({ each: true, message: 'BCC needs a proper email address' })
+  @IsEmail({ each: true, message: 'BCC must contain valid email addresses' })
   @IsOptional()
   bcc?: string[];
 
   @ApiProperty({ description: 'Template name if using a template', required: false })
   @IsString()
-  @IsOptional()
+  @ValidateIf((email) => !email.message, { message: 'Must use a template if no message is present' })
   template?: string;
 
   @ApiProperty({ description: 'Template data if using a template', required: false })
