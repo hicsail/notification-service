@@ -3,13 +3,13 @@ import { IsArray, IsEmail, IsOptional, IsString, ValidateIf } from 'class-valida
 
 export class Email {
   @ApiProperty({ description: 'The email address of the sender', default: 'noreply@email.sail.codes', required: false })
-  @IsEmail({ message: 'You need a proper email address' })
+  @IsEmail({}, { message: 'You need a proper email address' })
   @IsOptional()
   from: string;
 
   @ApiProperty({ description: 'The email addresses to send to' })
-  @IsEmail({ each: true, message: 'to must contain valid email addresses' })
   @IsArray()
+  @IsEmail({}, { each: true, message: 'to must contain valid email addresses' })
   to: string[];
 
   @ApiProperty({ description: 'The subject of the email', example: 'Hello from Sail' })
@@ -22,19 +22,19 @@ export class Email {
   message: string;
 
   @ApiProperty({ description: 'The email address to reply to', required: false })
-  @IsEmail({ message: 'Replay to must contain a valid email address' })
+  @IsEmail({}, { message: 'Replay to must contain a valid email address' })
   @IsOptional()
   replyTo?: string;
 
   @ApiProperty({ description: 'Add carbon copy email addresses', required: false })
   @IsArray()
-  @IsEmail({ each: true, message: 'CC must contain valid email addresses' })
+  @IsEmail({}, { each: true, message: 'CC must contain valid email addresses' })
   @IsOptional()
   cc?: string[];
 
   @ApiProperty({ description: 'Add blind carbon copy email addresses', required: false })
   @IsArray()
-  @IsEmail({ each: true, message: 'BCC must contain valid email addresses' })
+  @IsEmail({}, { each: true, message: 'BCC must contain valid email addresses' })
   @IsOptional()
   bcc?: string[];
 

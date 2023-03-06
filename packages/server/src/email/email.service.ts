@@ -40,6 +40,18 @@ export class EmailService {
 
   private async sendToSES(email: Email): Promise<boolean> {
     return new Promise((resolve, reject) => {
+      const Body: AWS.SES.Body = {};
+      if (email.renderedTemplate) {
+        Body.Html = {
+          Charset: 'UTF-8',
+          Data: email.renderedTemplate
+        };
+      } else {
+        Body.Text = {
+          Charset: 'UTF-8',
+          Data: email.message
+        };
+      }
       this.client.sendEmail(
         {
           Destination: {
@@ -48,16 +60,7 @@ export class EmailService {
             BccAddresses: email.bcc
           },
           Message: {
-            Body: {
-              Html: {
-                Charset: 'UTF-8',
-                Data: email.renderedTemplate
-              },
-              Text: {
-                Charset: 'UTF-8',
-                Data: email.message
-              }
-            },
+            Body,
             Subject: {
               Charset: 'UTF-8',
               Data: email.subject
