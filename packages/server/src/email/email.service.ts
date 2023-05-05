@@ -1,17 +1,27 @@
 import { HttpException, HttpStatus, Injectable, Logger } from '@nestjs/common';
-//import { SqsConsumerEventHandler, SqsMessageHandler } from '@ssut/nestjs-sqs';
-import * as AWS from 'aws-sdk';
 import { validate, ValidationError } from 'class-validator';
 import { plainToInstance } from 'class-transformer';
 import { Email } from './validator/email.dto';
 import { TemplatesService } from '../templates/templates.service';
+import * as nodemailer from 'nodemailer';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class EmailService {
-  constructor(private readonly templateService: TemplatesService) {}
-
-  private readonly client = new AWS.SES();
   private readonly logger = new Logger(EmailService.name);
+  private readonly transporter;
+
+  constructor(private readonly templateService: TemplatesService, private readonly config: ConfigService) {
+    this.transporter = nodemailer.createTransport({
+      host: config.get('EMAIL_HOST', 'smtp.sail.codes'),
+      port: config.get('EMAIL_PORT', 2500),
+      secure: config.get('EMAIL_SECURE', false),
+      auth: {
+        user: config.get('EMAIL_USER', 'noreply'),
+        pass: config.get('EMAIL_PASSWORD', 'password')
+      }
+    });
+  }
 
   /**
    * Validate the format of the message
@@ -35,61 +45,21 @@ export class EmailService {
     if (email.template) {
       email.renderedTemplate = await this.templateService.getTemplate(email.template, email.templateData);
     }
-    return this.sendToSES(email);
+    return this.sendViaNodeMailer(email);
   }
 
-  private async sendToSES(email: Email): Promise<boolean> {
-    return new Promise((resolve, reject) => {
-      const Body: AWS.SES.Body = {};
-      if (email.renderedTemplate) {
-        Body.Html = {
-          Charset: 'UTF-8',
-          Data: email.renderedTemplate
-        };
-      } else {
-        Body.Text = {
-          Charset: 'UTF-8',
-          Data: email.message
-        };
-      }
-      this.client.sendEmail(
-        {
-          Destination: {
-            ToAddresses: email.to,
-            CcAddresses: email.cc,
-            BccAddresses: email.bcc
-          },
-          Message: {
-            Body,
-            Subject: {
-              Charset: 'UTF-8',
-              Data: email.subject
-            }
-          },
-          ReplyToAddresses: [email.replyTo],
-          Source: email.from
-        },
-        (err, data) => {
-          if (err) {
-            this.logger.error(`Error sending email: ${err}`);
-            return reject(err);
-          }
-          this.logger.log(`Email sent: ${data}`);
-          return resolve(true);
-        }
-      );
+  private async sendViaNodeMailer(email: Email): Promise<boolean> {
+    const info = await this.transporter.sendEmail({
+      from: email.from,
+      to: email.to,
+      cc: email.cc,
+      bcc: email.bcc,
+      replyTo: email.replyTo,
+      subject: email.subject,
+      text: email.message,
+      html: email.renderedTemplate
     });
-  }
-
-  //@SqsMessageHandler(/** name: */ 'notification queue', /** batch: */ false)
-  public async handleMessage(message: AWS.SQS.Message): Promise<void> {
-    this.logger.log(`Message to be sent (type: ${typeof message}): ${message}, `);
-    const email = plainToInstance(Email, message);
-    await this.sendEmail(email);
-  }
-
-  //@SqsConsumerEventHandler(/** name: */ 'notification queue', /** eventName: */ 'processing_error')
-  public onProcessingError(error: Error, message: AWS.SQS.Message): void {
-    this.logger.error(`Processing error: ${error}\tmessage: ${message}`);
+    this.logger.log(`Email sent: ${info.messageId}`);
+    return true;
   }
 }
