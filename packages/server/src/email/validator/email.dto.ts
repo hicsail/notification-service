@@ -2,7 +2,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IsArray, IsEmail, IsOptional, IsString, ValidateIf } from 'class-validator';
 
 export class Email {
-  @ApiProperty({ description: 'The email address of the sender', default: 'noreply@email.sail.codes', required: false })
+  @ApiProperty({ description: 'The email address of the sender', default: 'noreply@mail.sail.codes', required: false })
   @IsEmail({}, { message: 'You need a proper email address' })
   @IsOptional()
   from: string;

@@ -36,7 +36,7 @@ export class EmailService {
    * @param msg
    */
   public async sendEmail(msg: Email): Promise<boolean> {
-    msg.from = msg.from || 'noreply@email.sail.codes';
+    msg.from = msg.from || 'noreply@mail.sail.codes';
     const email = plainToInstance(Email, msg);
     const errors = await this.isCompliantFormat(email);
     if (errors.length > 0) {
