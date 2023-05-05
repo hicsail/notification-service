@@ -17,6 +17,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      MAILGUN_API_KEY: test-api-key
+      MAILGUN_DOMAIN: test-domain
     defaults:
       run:
         working-directory: packages/server
