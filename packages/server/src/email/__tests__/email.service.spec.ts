@@ -1,13 +1,14 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { EmailService } from '../email.service';
 import { TemplatesModule } from '../../templates/templates.module';
+import { ConfigModule } from '@nestjs/config';
 
 describe('EmailService', () => {
   let service: EmailService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [TemplatesModule],
+      imports: [TemplatesModule, ConfigModule.forRoot()],
       providers: [EmailService]
     }).compile();
 
