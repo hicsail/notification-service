@@ -1,9 +1,16 @@
 name: server
 on:
+  workflow_dispatch:
   push:
+    paths:
+      - 'packages/server/**'
     branches:
       - main
+    tags:
+      - "v*.*.*"
   pull_request:
+    paths:
+      - 'packages/server/**'
     branches:
       - main
 
