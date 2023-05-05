@@ -3,24 +3,24 @@ import { validate, ValidationError } from 'class-validator';
 import { plainToInstance } from 'class-transformer';
 import { Email } from './validator/email.dto';
 import { TemplatesService } from '../templates/templates.service';
-import * as nodemailer from 'nodemailer';
+import { createTransport, Transporter } from 'nodemailer';
 import { ConfigService } from '@nestjs/config';
+import mailgunTransport from 'nodemailer-mailgun-transport';
 
 @Injectable()
 export class EmailService {
   private readonly logger = new Logger(EmailService.name);
-  private readonly transporter;
+  private readonly transporter: Transporter;
 
   constructor(private readonly templateService: TemplatesService, private readonly config: ConfigService) {
-    this.transporter = nodemailer.createTransport({
-      host: config.get('EMAIL_HOST', 'smtp.sail.codes'),
-      port: config.get('EMAIL_PORT', 2500),
-      secure: config.get('EMAIL_SECURE', false),
-      auth: {
-        user: config.get('EMAIL_USER', 'noreply'),
-        pass: config.get('EMAIL_PASSWORD', 'password')
-      }
-    });
+    this.transporter = createTransport(
+      mailgunTransport({
+        auth: {
+          apiKey: this.config.get<string>('MAILGUN_API_KEY'),
+          domain: this.config.get<string>('MAILGUN_DOMAIN', 'mail.sail.codes')
+        }
+      })
+    );
   }
 
   /**
@@ -49,7 +49,8 @@ export class EmailService {
   }
 
   private async sendViaNodeMailer(email: Email): Promise<boolean> {
-    const info = await this.transporter.sendEmail({
+    this.logger.log(`Sending email to ${email.to}`);
+    const info = await this.transporter.sendMail({
       from: email.from,
       to: email.to,
       cc: email.cc,
@@ -59,7 +60,7 @@ export class EmailService {
       text: email.message,
       html: email.renderedTemplate
     });
-    this.logger.log(`Email sent: ${info.messageId}`);
+    this.logger.log(JSON.stringify(info, null, 2));
     return true;
   }
 }
