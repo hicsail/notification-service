@@ -13,6 +13,8 @@
 
 2. Fetch all the required dependencies by npm install in the server directory
 
+3. Please also create .env file in your project and configure the following environmental variables:
+  
 <pre>
 SERVICE_NAME="notification-service"
 MAILGUN_API_KEY=TEST_API_KEY #this needs to be replaced with an actual key to send an email
