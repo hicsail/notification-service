@@ -13,7 +13,7 @@
 
 2. Fetch all the required dependencies by npm install in the server directory
 
-3. Please also create .env file in your project and configure the following environmental variables:
+3. Please also create .env file just beneath <a href ="https://github.com/hicsail/notification-service/tree/readMe/packages/server">the server directory</a> and configure the following environmental variables:
   
 <pre>
 SERVICE_NAME="notification-service"
