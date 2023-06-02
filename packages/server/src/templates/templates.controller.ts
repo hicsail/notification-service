@@ -14,7 +14,7 @@ export class TemplatesController {
    */
   @Get()
   async getTemplates(): Promise<string[]> {
-    this.logger.log("Getting templates")
+    this.logger.log('Getting templates');
     return this.templateService.getTemplates();
   }
 
@@ -30,7 +30,7 @@ export class TemplatesController {
   @Post('/preview/:templateName')
   async postTemplate(@Param('templateName') templateName: string, @Body() body: any): Promise<any> {
     try {
-      this.logger.log("Posting a template")
+      this.logger.log('Posting a template');
       return await this.templateService.getTemplate(templateName, body);
     } catch (e) {
       throw new HttpException('Template not found', HttpStatus.NOT_FOUND);
@@ -43,7 +43,7 @@ export class TemplatesController {
   @Get('/preview/:templateName')
   async getTemplate(@Param('templateName') templateName: string): Promise<any> {
     try {
-      this.logger.log("Previewing a template")
+      this.logger.log('Previewing a template');
       return await this.templateService.getTemplate(templateName, {});
     } catch (e) {
       this.logger.error(e);

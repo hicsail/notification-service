@@ -45,7 +45,7 @@ export class EmailService {
     if (email.template) {
       email.renderedTemplate = await this.templateService.getTemplate(email.template, email.templateData);
     }
-    this.logger.log("Sending email")
+    this.logger.log('Sending email');
     return this.sendViaNodeMailer(email);
   }
 
