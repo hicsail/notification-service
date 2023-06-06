@@ -28,6 +28,7 @@
     "@emotion/react": "^11.10.4",
     "@emotion/server": "^11.10.0",
     "@emotion/styled": "^11.10.4",
+    "@metinseylan/nestjs-opentelemetry": "^3.0.0",
     "@mui/material": "^5.10.10",
     "@nestjs/common": "^9.1.4",
     "@nestjs/config": "^2.2.0",

@@ -22,10 +22,8 @@ Assuming that you have cloned this repository in the
 3. Please also create .env file in your project and configure the following environmental variables:
   
 <pre>
-AWS_REGION="us-east-1"
-AWS_ACCESS_KEY_ID=""
-AWS_SECRET_ACCESS_KEY=""
-SQS_QUEUE_URL=""
+SERVICE_NAME="notification-service"
+MAILGUN_API_KEY=TEST_API_KEY #this needs to be replaced with an actual key to send an email
 </pre>
 
 ## 💾 Installation

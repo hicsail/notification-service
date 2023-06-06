@@ -16,12 +16,9 @@
 3. Please also create .env file just beneath <a href ="https://github.com/hicsail/notification-service/tree/readMe/packages/server">the server directory</a> and configure the following environmental variables:
   
 <pre>
-AWS_REGION="us-east-1"
-AWS_ACCESS_KEY_ID=""
-AWS_SECRET_ACCESS_KEY=""
-SQS_QUEUE_URL=""
+SERVICE_NAME="notification-service"
+MAILGUN_API_KEY=TEST_API_KEY #this needs to be replaced with an actual key to send an email
 </pre>
-
 ## 🖥️ Running the server in your local
 
 ```
